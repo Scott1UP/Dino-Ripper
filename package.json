@@ -8,7 +8,9 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "art": "node --env-file=.env.local scripts/art.mjs"
+    "art": "node --env-file=.env.local scripts/art.mjs",
+    "set": "python3 scripts/build-set.py",
+    "sim": "node scripts/sim.mjs"
   },
   "dependencies": {
     "@fontsource/fredoka": "^5.3.0",

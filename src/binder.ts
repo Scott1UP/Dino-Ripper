@@ -8,9 +8,9 @@ import { store } from './store';
 import { wait } from './tween';
 import { zoomCards } from './zoom';
 
-/** Pockets on each page. With the full set this wants to be 3 x 3. */
-const COLS = 2;
-const ROWS = 2;
+/** Pockets on each page. */
+const COLS = 3;
+const ROWS = 3;
 const PER_PAGE = COLS * ROWS;
 const PAGES = Math.ceil(TOTAL / PER_PAGE);
 /** Side 0 is the inside of the front cover, sides 1..PAGES hold cards; the last side must be a right-hand one. */

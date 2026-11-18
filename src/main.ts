@@ -12,7 +12,6 @@ import { createCard } from './card';
 import { type CardDef, isBigPull, openPack, PACK_SIZE, RARITY } from './cards';
 import { fx } from './fx';
 import { Packs } from './packs';
-import { store } from './store';
 import { wait } from './tween';
 import { zoomCards } from './zoom';
 
@@ -100,10 +99,7 @@ async function open() {
   showArrow(false);
   peek.classList.add('away');
 
-  const defs = openPack();
-  const fresh = new Set<string>();
-  for (const d of defs) if (store.count(d.id) === 0) fresh.add(d.id);
-  store.add(defs.map((d) => d.id));
+  const { cards: defs, fresh } = openPack();
 
   await packs.spin();
 

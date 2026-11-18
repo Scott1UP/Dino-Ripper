@@ -5,9 +5,10 @@
 //   npm run art -- pack           convert art/raw/*.png into public/art/*.webp
 //   npm run art -- list           list every id
 //
-// Raw model output is kept in art/raw/ so `pack` can be re-run for free.
+// The cards come from src/set.json (written by scripts/build-set.py): each card names its artist
+// and the scene to draw. Raw model output is kept in art/raw/ so `pack` can be re-run for free.
 
-import { mkdir, writeFile, access } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, access } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
@@ -18,7 +19,7 @@ const OUT = path.join(ROOT, 'public', 'art');
 
 const MODEL = process.env.ART_MODEL ?? 'gpt-image-2.6-sunburst';
 const QUALITY = process.env.ART_QUALITY ?? 'high';
-const CONCURRENCY = 4;
+const CONCURRENCY = 6;
 
 const ORIGINAL =
   'An original dinosaur design for a children\'s collectible card game about real dinosaurs. It does not ' +
@@ -26,40 +27,11 @@ const ORIGINAL =
 const NO_TEXT =
   'No text, no letters, no numbers, no logos, no signature, no border, no card frame: the artwork fills the whole image edge to edge.';
 
-// One art style per rarity.
-const STYLE = {
-  common:
-    'Style: a pencil and wax-crayon drawing on cream sketchbook paper, like a page from a talented young ' +
-    'artist\'s sketchbook: visible waxy crayon strokes, soft graphite outlines, slightly uneven colouring, paper grain showing through.',
-  uncommon:
-    'Style: a loose traditional watercolour painting with fine ink linework: wet-on-wet washes, soft colour ' +
-    'bleeds and blooms, granulating pigment, white paper showing at the edges of the washes, cold-press paper texture.',
-  rare:
-    'Style: detailed 16-bit pixel art like a classic 1990s console game: crisp square pixels, a limited ' +
-    'vivid palette, dithered shading, clean dark outlines, a layered parallax-style background.',
-  ultra:
-    'Style: spray-paint street art on a wall: bold stencil shapes, soft aerosol overspray, paint drips, ' +
-    'splatter, neon colours against deep shadow, thick confident highlights, energetic abstract bursts of colour behind the subject.',
-  secret:
-    'Style: a breathtaking, richly detailed storybook illustration in gouache and coloured ink, the kind you ' +
-    'could look at for minutes: luminous colour, glowing light, hundreds of small charming details, ' +
-    'decorative flowing shapes, a complete living world around the subject.',
-  gold:
-    'Style: the entire image is one solid slab of polished yellow gold, sculpted as a bas-relief: the subject ' +
-    'is raised, embossed metal; the background is gold too, finely engraved with radiating sunburst lines and a ' +
-    'border of small scale patterns. Everything is gold, only gold: bright highlights, deep amber shadows, no other colours.',
-};
-
 const WIDE = '1536x1024';
 const TALL = '1024x1536';
 const FULL_ART =
   'Vertical composition for a full-art trading card: the dinosaur\'s head and body sit in the upper two thirds ' +
   'of the image; the lower third is calmer scenery so that words can be printed over it.';
-
-const card = (style, size, subject) => ({
-  size,
-  prompt: `${subject} ${size === TALL ? FULL_ART : ''} ${STYLE[style]} ${ORIGINAL} ${NO_TEXT}`,
-});
 
 // `pose` says how the dinosaur is posed and seen; it differs from pack to pack.
 const packArt = (subject, pose) => ({
@@ -77,45 +49,182 @@ const LOGO_STYLE =
   'A video game style logo, flat front-on, centred, with generous empty space around it. Fully transparent ' +
   'background, no ground, no shadow on the background, no other text, no other objects.';
 
+// ---- the artists -----------------------------------------------------------------------------
+// The full set is drawn by a roster of invented artists, each with a hand of their own, the way a
+// real card set is. These are interpretations, not studies: an artist may simplify, exaggerate or
+// reinvent the animal, so long as you can still tell which dinosaur it is.
+const LOOSE =
+  'This is the artist\'s own interpretation, not a realistic or scientific picture: the anatomy and proportions do ' +
+  'not need to be correct and should be simplified, exaggerated or reinvented in this artist\'s style, while the ' +
+  'animal stays clearly recognisable by its most famous features. An original design for a children\'s collectible ' +
+  'card game about dinosaurs, friendly and suitable for a young child; it does not resemble any character from an ' +
+  'existing game, film or cartoon.';
+
+export const ARTISTS = {
+  crayon: {
+    name: 'Pip Scribble',
+    style:
+      'Style: a pencil and wax-crayon drawing on cream sketchbook paper: visible waxy crayon strokes, soft graphite ' +
+      'outlines, slightly uneven colouring, paper grain showing through.',
+  },
+  watercolour: {
+    name: 'Wren Loch',
+    style:
+      'Style: a loose traditional watercolour painting with fine ink linework: wet-on-wet washes, soft colour ' +
+      'bleeds and blooms, granulating pigment, white paper showing at the edges of the washes.',
+  },
+  pixel: {
+    name: 'Bea Bitmap',
+    style:
+      'Style: detailed 16-bit pixel art like a classic 1990s console game: crisp square pixels, a limited vivid ' +
+      'palette, dithered shading, clean dark outlines, a layered parallax-style background.',
+  },
+  spray: {
+    name: 'Dax One',
+    style:
+      'Style: spray-paint street art on a wall: bold stencil shapes, soft aerosol overspray, paint drips, splatter, ' +
+      'neon colours against deep shadow, energetic abstract bursts of colour behind the subject.',
+  },
+  storybook: {
+    name: 'Odette Fable',
+    style:
+      'Style: a breathtaking, richly detailed storybook illustration in gouache and coloured ink, the kind you could ' +
+      'look at for minutes: luminous colour, glowing light, hundreds of small charming details, decorative flowing ' +
+      'shapes, a complete living world around the subject.',
+  },
+  gold: {
+    name: 'The Goldsmith',
+    style:
+      'Style: the entire image is one solid slab of polished yellow gold, sculpted as a bas-relief: the subject is ' +
+      'raised, embossed metal; the background is gold too, finely engraved with radiating sunburst lines and a ' +
+      'border of small scale patterns. Everything is gold, only gold: bright highlights, deep amber shadows.',
+  },
+  mabel: {
+    name: 'Mabel, age 6',
+    style:
+      'Style: a real drawing by a six-year-old child, in felt-tip pens and wax crayon on white printer paper. Wobbly ' +
+      'outlines, scribbled colouring that goes over the lines and leaves white gaps, wildly wrong proportions, ' +
+      'stick legs, a huge head with a big smile and far too many triangle teeth, dots for eyes. A yellow sun with ' +
+      'stick rays in one corner, a strip of spiky green grass along the bottom, a scribbled blue sky stripe along the ' +
+      'top. Genuinely naive and charming, not a skilled adult imitating a child.',
+  },
+  collage: {
+    name: 'Otto Papier',
+    style:
+      'Style: a cut-paper collage. The animal and everything around it are built from simple shapes cut and torn ' +
+      'out of hand-painted tissue paper and coloured card, with visible brush texture, overlapping layers, slightly ' +
+      'ragged edges and soft shadows under the paper, on an off-white background. Bold, simple, joyful shapes.',
+  },
+  clay: {
+    name: 'Dot Morrow',
+    style:
+      'Style: a photograph of a handmade plasticine clay model, like a frame from a stop-motion film. A chubby, ' +
+      'lumpy clay animal with visible thumbprints and tool marks, simple round ball eyes, sitting in a tiny handmade ' +
+      'clay and cardboard set, lit softly like a miniature film stage.',
+  },
+  lino: {
+    name: 'Ines Block',
+    style:
+      'Style: a hand-pulled linocut print in just two ink colours plus the cream paper. Bold carved shapes, chunky ' +
+      'gouged lines and hatch marks, slightly uneven ink coverage and misregistered colour layers, strong decorative ' +
+      'pattern on the animal\'s body. Graphic and striking.',
+  },
+  shapes: {
+    name: 'Bruno Kube',
+    style:
+      'Style: a flat mid-century modern poster built only from simple geometric shapes: circles, triangles, ' +
+      'rectangles and half-circles in five flat colours with no outlines and no shading, a little printed grain. ' +
+      'The animal is reduced to a clever, minimal arrangement of shapes.',
+  },
+  toon: {
+    name: 'Sunny Hollis',
+    style:
+      'Style: a frame from a modern preschool animated TV series. Clean, flat vector shapes with soft rounded ' +
+      'corners, a warm bright palette, simple friendly faces with small dot eyes and expressive eyebrows, thin ' +
+      'outlines in a darker shade of each colour instead of black, flat colour with a single soft shadow tone, and ' +
+      'a simple sunny backdrop of rolling hills and tidy stylised trees. Gentle, warm and funny.',
+  },
+  kawaii: {
+    name: 'Momo Chi',
+    style:
+      'Style: a super-cute sticker illustration. The animal is a tiny round blob with a huge head, stubby limbs, ' +
+      'big sparkly eyes and pink cheeks, drawn with smooth pastel colours and a thick white sticker outline, with ' +
+      'little stars and hearts floating around it on a soft pastel background.',
+  },
+  glass: {
+    name: 'Vitra Lux',
+    style:
+      'Style: a stained-glass window. The animal and its world are made of pieces of richly coloured glass ' +
+      'separated by thick black lead lines, with light glowing through the glass, bold simplified shapes and a ' +
+      'radiating sunburst behind.',
+  },
+  chalk: {
+    name: 'Miss Tavish',
+    style:
+      'Style: a drawing in coloured chalk on a dusty green school blackboard. Soft smudgy chalk lines, patches of ' +
+      'rubbed-in colour, chalk dust and half-wiped marks around it, drawn with simple confident strokes.',
+  },
+  felt: {
+    name: 'Nana Stitch',
+    style:
+      'Style: a photograph of a handmade felt applique picture. The animal is made from pieces of coloured felt ' +
+      'sewn on with big visible stitches, button eyes, embroidered thread details and a little stuffing so it puffs ' +
+      'out, on a patterned fabric background.',
+  },
+  ink: {
+    name: 'Kaze',
+    style:
+      'Style: an East Asian ink-wash brush painting. The animal is suggested in a few bold, sweeping black brush ' +
+      'strokes with dry-brush texture and soft grey washes, one accent of red, and a great deal of empty rice paper.',
+  },
+  cave: {
+    name: 'Og',
+    style:
+      'Style: a prehistoric cave painting. The animal is drawn in red and yellow ochre and charcoal on a rough ' +
+      'sandy rock wall, simple and stylised, with a few small hand prints and tiny stick figures holding spears nearby.',
+  },
+  neon: {
+    name: 'Vega',
+    style:
+      'Style: glowing neon line art on a black background. The animal is drawn in a few continuous bright tube-light ' +
+      'lines in hot pink, cyan and yellow, with a soft glow, like a neon sign, above a simple glowing grid horizon.',
+  },
+  biro: {
+    name: 'Ben, Class 4B',
+    style:
+      'Style: a doodle in blue ballpoint pen on lined school notebook paper with a red margin line. Scratchy, ' +
+      'energetic scribbled lines, heavy cross-hatching, bits coloured in with a yellow highlighter, the animal ' +
+      'given comic-book action lines and explosions, as drawn by a bored and dinosaur-mad ten-year-old.',
+  },
+  origami: {
+    name: 'Ori Fold',
+    style:
+      'Style: a photograph of an origami model. The animal is folded from a single sheet of patterned paper, all ' +
+      'flat facets and crisp creases, standing on a plain surface among a few simple folded paper plants, in soft daylight.',
+  },
+  swirl: {
+    name: 'Flora Swirl',
+    style:
+      'Style: a 1960s psychedelic poster. The animal is drawn in flowing, melting curves and filled with swirling ' +
+      'patterns in clashing saturated colours, orange against purple, pink against green, with rippling rings ' +
+      'radiating out from it across the whole picture.',
+  },
+};
+
+const SET = JSON.parse(await readFile(path.join(ROOT, 'src', 'set.json'), 'utf8'));
+/** Common, uncommon and rare cards have a picture window; the rarer ones are full art. */
+const fullArt = (card) => ['ultra', 'secret', 'gold'].includes(card.rarity);
+const cardImage = (card) => {
+  const size = fullArt(card) ? TALL : WIDE;
+  return {
+    size,
+    prompt: `${card.scene} ${size === TALL ? FULL_ART : ''} ${ARTISTS[card.artist].style} ${LOOSE} ${NO_TEXT}`,
+  };
+};
+
 export const IMAGES = {
   // --- cards -----------------------------------------------------------------
-  // Each card names its own camera angle and facing, so the set does not all look the same way.
-  compy: card('common', WIDE,
-    'A small, slender green Compsognathus with a yellow belly, seen from the front in three-quarter view, sprinting ' +
-    'towards the viewer and to the LEFT. Its head is on the left side of the picture, jaws open, snapping up at a blue ' +
-    'dragonfly in the top left corner; its tail trails away to the right between big ferns.'),
-  para: card('common', WIDE,
-    'Two orange Parasaurolophus with long striped head crests at the edge of a lake, seen from a low camera near the water. ' +
-    'The nearer one fills the left half of the picture, facing LEFT with its head lowered to drink, ripples spreading; ' +
-    'the other stands further back on the right, head thrown straight up, calling.'),
-  pachy: card('common', WIDE,
-    'A blue-grey Pachycephalosaurus seen exactly head-on, charging straight at the viewer down a rocky hillside. Its thick ' +
-    'domed head, ringed with little knobs, is lowered and huge in the middle of the picture, its body foreshortened ' +
-    'behind it, dust and pebbles flying out to both sides.'),
-  stego: card('uncommon', WIDE,
-    'A big Stegosaurus with tall rust-red back plates, seen from behind in a rear three-quarter view as it walks away ' +
-    'into a meadow of ferns and horsetails in warm evening light. Its spiked tail swings large in the foreground on the ' +
-    'right; it looks back over its shoulder towards the LEFT.'),
-  anky: card('uncommon', WIDE,
-    'A sand-coloured, heavily armoured Ankylosaurus seen from directly above, a bird\'s-eye view looking straight down on ' +
-    'its wide knobbly back. Its body is curled in a C shape as it whips its heavy tail club round in an arc, the club ' +
-    'smashing into the red rock at the bottom left, dust bursting outwards.'),
-  trike: card('rare', WIDE,
-    'A green Triceratops with a bright patterned frill and three long horns, charging through a jungle clearing.'),
-  ptera: card('rare', WIDE,
-    'A Pteranodon with a long red crest seen from below as it flies directly overhead, heading towards the top LEFT ' +
-    'corner. Its huge wings span the whole picture on a diagonal with the setting sun glowing through them; sea cliffs ' +
-    'and crashing waves are small and far below along the bottom edge.'),
-  raptor: card('ultra', TALL,
-    'A feathered Velociraptor in electric blue and hot orange, crouched low on a rock and facing the viewer head-on, seen ' +
-    'from a low camera. Its head is tilted to one side with a sharp curious stare, one foot raised to show its big sickle ' +
-    'claw, feathered arms spread wide, its long tail curling up and round behind it on the LEFT.'),
-  spino: card('secret', TALL,
-    'A magnificent Spinosaurus with a tall glowing sail wading through a river at twilight in a prehistoric jungle. ' +
-    'Glowing fireflies and luminous plants reflect in the water, a waterfall falls in the distance, small pterosaurs ' +
-    'cross a huge moon, and tiny dinosaurs and fish hide among giant leaves and flowers.'),
-  rex: card('gold', TALL,
-    'A mighty Tyrannosaurus rex roaring, head and shoulders in three-quarter view, every scale and tooth sculpted, wearing a small crown.'),
+  ...Object.fromEntries(SET.map((card) => [card.id, cardImage(card)])),
 
   // --- packs -----------------------------------------------------------------
   'pack-rex': packArt(
@@ -221,9 +330,9 @@ async function pack() {
     if (!(await exists(src))) continue;
     let img = sharp(src);
     if (spec.transparent) img = img.trim().resize({ width: 1000, withoutEnlargement: true });
-    else if (spec.size === WIDE) img = img.resize({ width: 1080 });
-    else img = img.resize({ width: 900 });
-    await img.webp({ quality: 88 }).toFile(path.join(OUT, `${id}.webp`));
+    else if (spec.size === WIDE) img = img.resize({ width: 960 });
+    else img = img.resize({ width: 840 });
+    await img.webp({ quality: 84 }).toFile(path.join(OUT, `${id}.webp`));
     console.log(`[${id}] packed public/art/${id}.webp`);
   }
 }

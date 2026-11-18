@@ -11,6 +11,8 @@ const ICONS: Record<DinoType, string> = {
 
 const icon = (type: DinoType) => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${ICONS[type]}"/></svg>`;
 const pad = (n: number) => String(n).padStart(3, '0');
+/** Long names are set smaller so they still fit beside the power. */
+const nameSize = (name: string) => (name.length > 17 ? ' xlong' : name.length > 13 ? ' long' : '');
 const art = (id: string) => `./art/${id}.webp`;
 
 /**
@@ -28,6 +30,7 @@ export function createCard(def: CardDef, faceDown = false): HTMLElement {
   el.className = `card r-${def.rarity} fin-${def.finish} t-${def.type}${r.fullArt ? ' full-art' : ''}${faceDown ? ' down' : ''}`;
   el.dataset.id = def.id;
   el.style.setProperty('--delay', `${-Math.random() * 6}s`);
+  if (def.spots) el.style.setProperty('--spots', def.spots);
   el.innerHTML = `
     <div class="card-inner">
       <div class="face back">
@@ -41,7 +44,7 @@ export function createCard(def: CardDef, faceDown = false): HTMLElement {
         ${r.fullArt ? `<img class="bleed" src="${art(def.id)}" alt="" draggable="false" />` : ''}
         <div class="plate">
           <div class="top">
-            <span class="name${def.name.length > 13 ? ' long' : ''}">${def.name}</span>
+            <span class="name${nameSize(def.name)}">${def.name}</span>
             <span class="power"><small>POWER</small>${def.power}</span>
             <span class="type">${icon(def.type)}</span>
           </div>
@@ -60,7 +63,7 @@ export function createCard(def: CardDef, faceDown = false): HTMLElement {
           </div>
           <div class="fact">${def.fact}</div>
           <div class="foot">
-            <span class="style">${r.style}</span>
+            <span class="style">Illus. ${def.artistName}</span>
             <span class="stars">${r.stars}</span>
             <span class="no">${pad(def.no)}/${pad(TOTAL)}</span>
           </div>

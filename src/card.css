@@ -24,6 +24,8 @@
    frame. For the same reason the drift stops on cards hidden behind the close-up view. */
 .card.shine:not(.manual):not(.fin-matte) { animation: shimmer 5.5s ease-in-out var(--delay, 0s) infinite; }
 .zooming .card.shine:not(.zoomed) { animation-play-state: paused; }
+/* A binder page can hold nine foil cards, so in the pockets the light stays still; taking a card out to look at it brings its foil to life. */
+.pocket .card.shine { animation: none; }
 @keyframes shimmer {
   0%, 100% { --px: 4%; --py: 14%; }
   50% { --px: 96%; --py: 86%; }
@@ -98,6 +100,7 @@
 .top { flex: none; display: flex; align-items: center; gap: 1.5cqw; height: 9.5cqw; }
 .name { flex: 1; min-width: 0; font-weight: 600; font-size: 6.6cqw; line-height: 1; letter-spacing: -0.02em; white-space: nowrap; }
 .name.long { font-size: 5.1cqw; }
+.name.xlong { font-size: 4.5cqw; }
 .power { display: flex; align-items: baseline; gap: 0.8cqw; font-weight: 700; font-size: 7.2cqw; line-height: 1; }
 .power small { font-size: 2.3cqw; font-weight: 600; letter-spacing: 0.06em; opacity: 0.75; }
 .type, .cost i {
@@ -154,7 +157,7 @@
 }
 
 .foot { flex: none; display: flex; align-items: center; justify-content: space-between; height: 3.4cqw; padding: 0 1cqw; font-weight: 500; font-size: 2.4cqw; line-height: 1; }
-.foot .style, .foot .no { width: 30cqw; }
+.foot .style, .foot .no { width: 34cqw; white-space: nowrap; }
 .foot .no { text-align: right; }
 .stars { font-size: 3.5cqw; letter-spacing: 0.12em; }
 
@@ -275,8 +278,8 @@
   --glare: 0.45;
 }
 .r-secret .stars { color: #ffd84a; }
-/* Spot finish: foil only on chosen parts of the picture (--spots says where), plus the rainbow edge.
-   On the Spinosaurus that is its sail, the moon and the water. */
+/* Spot finish: foil only on chosen parts of the picture, plus the rainbow edge. Each card sets its
+   own --spots (three ovals, placed in scripts/build-set.py); these are a fallback. */
 .fin-spot {
   --spots:
     radial-gradient(ellipse 30% 15% at 36% 30%, #000 45%, transparent 100%),

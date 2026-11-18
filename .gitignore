@@ -11,3 +11,6 @@ references/
 
 # raw image-model output (local only; re-pack with `npm run art -- pack`)
 art/raw/
+
+# contact sheets for reviewing generated art (local only)
+art/review/
