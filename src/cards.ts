@@ -2,7 +2,7 @@
 
 import { dealPack, DEFAULT_PRESET, PRESETS } from './odds';
 import set from './set.json';
-import { store } from './store';
+import { showcaseName, store } from './store';
 import type { Rarity } from './types';
 
 export type { Rarity };
@@ -65,11 +65,13 @@ export const isBigPull = (def: CardDef) => RARITY[def.rarity].tier >= 3;
 
 /**
  * Opens a pack and records it. Returns the cards, rare slot last, and which were not in the
- * collection before. `?force=gold` (or any rarity) in the address fixes the last card, for testing.
+ * collection before. `?force=gold` (or any rarity) in the address fixes the last card, for testing;
+ * so does the `last` showcase (see store.ts), which is about pulling the final card of the set.
  */
 export function openPack(): { cards: CardDef[]; fresh: Set<string> } {
-  const forced = new URLSearchParams(location.search).get('force') as Rarity | null;
-  const { cards, luck } = dealPack(CARDS, store.luck, PRESETS[DEFAULT_PRESET], { force: forced && forced in RARITY ? forced : undefined });
+  const asked = showcaseName === 'last' ? 'gold' : showcaseName;
+  const force = asked in RARITY ? (asked as Rarity) : undefined;
+  const { cards, luck } = dealPack(CARDS, store.luck, PRESETS[DEFAULT_PRESET], { force });
   const fresh = new Set(cards.filter((c) => store.count(c.id) === 0).map((c) => c.id));
   store.add(cards.map((c) => c.id), luck);
   return { cards, fresh };

@@ -9,9 +9,12 @@ import './card.css';
 import { audio } from './audio';
 import { initBinder, refreshPeek } from './binder';
 import { createCard } from './card';
+import { celebrateIfComplete, COMPLETE_SHOW } from './complete';
 import { type CardDef, isBigPull, openPack, PACK_SIZE, RARITY } from './cards';
 import { fx } from './fx';
 import { Packs } from './packs';
+import { store } from './store';
+import { canTrade, tradeAll } from './trade';
 import { wait } from './tween';
 import { zoomCards } from './zoom';
 
@@ -22,6 +25,10 @@ const nextBtn = $<HTMLButtonElement>('#next');
 const celebrate = $('#celebrate');
 const banner = $('#banner');
 const sleeveBtn = $('#tap');
+const tip = $('#tip');
+const tradeTop = $('#trade-top');
+const autoRow = $('#auto');
+const autoBox = $<HTMLInputElement>('#auto input');
 const arrow = $('#arrow');
 const peek = $('#binder-peek');
 const mute = $<HTMLButtonElement>('#mute');
@@ -53,11 +60,19 @@ function showArrow(on: boolean) {
   const size = arrow.offsetWidth;
   arrow.style.transform = `translate(${edge.x - size * 1.15}px, ${edge.y - size / 2}px)`;
   arrow.classList.toggle('on', on);
+  // The same moment, waiting for a pack to be picked, is when the trade can be offered at the top of the screen.
+  tradeTop.classList.toggle('on', on && canTrade());
 }
 
-function setHint(text: string) {
+/**
+ * The line of help at the bottom. It normally sits under the pack in the middle, which is left of
+ * centre to leave room for the shelf; `centred` puts it under the middle of the screen instead, for
+ * when it is about the row of cards.
+ */
+function setHint(text: string, centred = false) {
   hint.textContent = text;
   hint.classList.toggle('on', text !== '');
+  if (text) hint.classList.toggle('centred', centred);
 }
 
 function put(el: HTMLElement, x: number, y: number, scale = 1, rot = 0, ms = 0, easing = 'cubic-bezier(0.2, 0.9, 0.25, 1)') {
@@ -142,7 +157,7 @@ async function open() {
   });
   await wait(620 + PACK_SIZE * 75);
   state = 'reveal';
-  setHint('Tap a card to flip it!');
+  setHint('Tap a card to flip it!', true);
 }
 
 // ---- turning cards over --------------------------------------------------------
@@ -161,8 +176,13 @@ function afterFlip(p: Pulled) {
   }
   if (pulled.every((c) => c.flipped)) {
     setHint('');
+    // Once every card is face up, a quiet line above them says what tapping one does now.
+    tip.style.top = `${Math.min(...pulled.map((c) => c.y)) - 46}px`;
+    tip.classList.add('on');
     nextBtn.style.top = `${Math.min(layout().bottom + innerHeight * 0.035, innerHeight - 90)}px`;
     nextBtn.classList.add('on');
+    autoRow.style.top = `${parseFloat(nextBtn.style.top) + nextBtn.offsetHeight + 22}px`;
+    autoRow.classList.add('on');
   }
 }
 
@@ -298,6 +318,8 @@ async function collect() {
   state = 'collecting';
   audio.tap();
   nextBtn.classList.remove('on');
+  autoRow.classList.remove('on');
+  tip.classList.remove('on');
   peek.classList.remove('away');
   await wait(150);
 
@@ -321,7 +343,16 @@ async function collect() {
   await wait(480 + PACK_SIZE * 80);
   pulled = [];
   refreshPeek();
+  // The last card of the set arriving stops everything for a moment.
+  if (celebrateIfComplete()) await wait(COMPLETE_SHOW);
   packs.showShelf(true);
+
+  // With "Auto open next pack" ticked, the top pack comes in and opens by itself.
+  if (store.auto && (await packs.takeTop())) {
+    state = 'idle';
+    void open();
+    return;
+  }
   packs.interactive = true;
   state = 'idle';
   setHint('Grab a pack!');
@@ -347,8 +378,20 @@ addEventListener('resize', () => {
     p.el.style.width = `${cardW}px`;
     put(p.el, p.x, p.y);
   });
+  tip.style.top = `${Math.min(...lay.spots.map((s) => s.y)) - 46}px`;
 });
 nextBtn.addEventListener('click', () => void collect());
+tradeTop.addEventListener('click', () => void tradeAll());
+// A trade or a reset, here or in the binder, changes what the counter and the trade offer should say.
+addEventListener('collection-changed', () => {
+  refreshPeek();
+  tradeTop.classList.toggle('on', arrow.classList.contains('on') && canTrade());
+});
+autoBox.checked = store.auto;
+autoBox.addEventListener('change', () => {
+  store.auto = autoBox.checked;
+  audio.tap();
+});
 mute.addEventListener('click', () => {
   audio.toggle();
   showMute();

@@ -48,7 +48,25 @@ button { font: inherit; color: inherit; -webkit-tap-highlight-color: transparent
   transition: opacity 0.3s;
 }
 #hint.on { opacity: 1; animation: nudge 1.6s ease-in-out infinite; }
+#hint.centred { width: 100%; }
 @keyframes nudge { 50% { transform: translateY(-6px); } }
+
+/* A quiet line of help above the cards on the table, and above the open binder. */
+#tip, .book-tip {
+  position: fixed;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-weight: 500;
+  font-size: clamp(14px, 1.7vw, 18px);
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.72);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+#tip { z-index: 4; top: 6vh; opacity: 0; transition: opacity 0.4s; }
+#tip.on { opacity: 1; }
+.book-tip { top: 2.6vh; animation: fade 0.5s 0.9s backwards; }
 
 /* Points at the packs while there is nothing else to do. */
 #arrow {
@@ -156,6 +174,40 @@ button { font: inherit; color: inherit; -webkit-tap-highlight-color: transparent
 #next.on { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
 #next.on:active { transform: translate(-50%, 4px); box-shadow: 0 2px 0 #7a3d00, 0 6px 12px rgba(0, 0, 0, 0.45); }
 
+/* The tick box under the Next Pack button. */
+#auto {
+  position: fixed;
+  z-index: 12;
+  left: 50%;
+  top: 94vh;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  font-weight: 500;
+  font-size: clamp(15px, 1.9vw, 19px);
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transform: translateX(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+#auto.on { opacity: 1; pointer-events: auto; }
+#auto input { position: absolute; opacity: 0; pointer-events: none; }
+#auto i {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 7px;
+  background: rgba(10, 24, 28, 0.6);
+}
+#auto input:checked + i { border-color: #7a3d00; background: linear-gradient(#ffe57a, #f59a1b); }
+#auto input:checked + i::after { content: ''; width: 7px; height: 13px; margin-top: -3px; border: solid #4a2500; border-width: 0 3.5px 3.5px 0; transform: rotate(45deg); }
+
 #mute, .zoom-btn, .zoom-rotate i, .book-nav, .book-close {
   display: grid;
   place-items: center;
@@ -216,6 +268,7 @@ button { font: inherit; color: inherit; -webkit-tap-highlight-color: transparent
   font-size: 17px;
   box-shadow: 0 3px 0 #a36a00;
 }
+.peek-count.complete { background: linear-gradient(#fff3b0, #f5b700); box-shadow: 0 3px 0 #a36a00, 0 0 14px rgba(255, 210, 80, 0.9); }
 
 /* ---- celebrations ------------------------------------------------------------- */
 
@@ -272,6 +325,10 @@ button { font: inherit; color: inherit; -webkit-tap-highlight-color: transparent
 #banner.secret { color: #bfe6ff; text-shadow: 0 0.06em 0 #3b2a8a, 0 0 0.5em rgba(190, 150, 255, 0.9); }
 #banner.ultra { color: #f2f8ff; text-shadow: 0 0.06em 0 #1f4f8a, 0 0 0.5em rgba(120, 190, 255, 0.9); }
 #banner.ultra small { color: #e6f2ff; }
+/* The finished-collection banner shows over anything, the open binder included, and sits mid-screen. */
+#banner.complete { z-index: 65; top: 16vh; font-size: min(10vw, 11vh); }
+#banner.complete img { display: block; width: min(30vw, 28vh); margin: 0 auto 0.12em; filter: drop-shadow(0 0.08em 0.12em rgba(0, 0, 0, 0.6)); }
+#banner.complete small { margin-top: 0.12em; }
 /* Under the celebrated card, once it can be put away. */
 #tap {
   position: fixed;
@@ -311,7 +368,7 @@ body.shake { animation: shake 0.9s linear; }
 #zoom { z-index: 50; }
 #binder.on, #zoom.on { display: block; }
 /* Closing: the controls go at once, the dark fades as the binder travels back to its corner. */
-#binder.leaving .book-nav, #binder.leaving .book-close, #binder.leaving .book-page { display: none; }
+#binder.leaving .book-nav, #binder.leaving .book-close, #binder.leaving .book-page, #binder.leaving .book-tip { display: none; }
 #binder.leaving.going .binder-shade { opacity: 0; transition: opacity 0.32s; }
 
 .binder-shade { position: absolute; inset: 0; background: rgba(3, 8, 10, 0.82); animation: fade 0.3s; }
@@ -348,11 +405,44 @@ body.shake { animation: shake 0.9s linear; }
 .cover-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
 .inside { background: radial-gradient(ellipse at 50% 40%, #1d4a3a, #0f2a21); }
-.info { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3%; padding: 9%; text-align: center; color: #e6f2e8; }
-.info img { width: 74%; }
+.info { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.2%; padding: 6% 9%; text-align: center; color: #e6f2e8; }
+.info img { width: 60%; }
+.info-done { font-family: 'Lilita One', sans-serif; font-size: clamp(16px, 2.3vw, 27px); color: #ffd84a; text-shadow: 0 2px 0 #7a4500, 0 0 16px rgba(255, 200, 60, 0.7); }
+.info.complete { background: radial-gradient(ellipse at 50% 35%, #4a4416, #1a2a12); }
+.trade {
+  margin-top: 3%;
+  padding: 8px 20px 10px;
+  border: 3px solid #7a3d00;
+  border-radius: 999px;
+  background: linear-gradient(#ffe57a, #f59a1b);
+  color: #4a2500;
+  font-family: 'Lilita One', sans-serif;
+  font-size: clamp(13px, 1.6vw, 18px);
+  box-shadow: 0 4px 0 #7a3d00;
+  cursor: pointer;
+}
+.trade:active { transform: translateY(3px); box-shadow: 0 1px 0 #7a3d00; }
+/* The same offer at the top of the table, while waiting for a pack to be picked. */
+#trade-top {
+  position: fixed;
+  z-index: 12;
+  left: 50%;
+  top: 3vh;
+  margin: 0;
+  font-size: clamp(15px, 1.9vw, 21px);
+  white-space: nowrap;
+  box-shadow: 0 4px 0 #7a3d00, 0 10px 20px rgba(0, 0, 0, 0.45);
+  transform: translate(-50%, -160%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.35s cubic-bezier(0.2, 1.3, 0.4, 1);
+}
+#trade-top.on { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
+#trade-top.on:active { transform: translate(-50%, 3px); }
 .info-count { font-family: 'Lilita One', sans-serif; font-size: clamp(16px, 2.2vw, 26px); }
 .info-count b { font-size: 1.9em; color: #ffd84a; }
 .info-bar { width: 80%; height: 12px; border-radius: 9px; background: rgba(0, 0, 0, 0.4); overflow: hidden; }
+.info-packs { font-size: clamp(11px, 1.3vw, 14px); font-weight: 500; opacity: 0.7; margin-top: -1%; }
 .info-bar i { display: block; height: 100%; border-radius: 9px; background: linear-gradient(90deg, #ffd84a, #ff8a3d); }
 .info ul { width: 88%; margin: 3% 0 0; padding: 0; list-style: none; font-size: clamp(12px, 1.5vw, 17px); font-weight: 500; }
 .info li { display: flex; align-items: center; gap: 8px; padding: 3px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.12); text-align: left; }
@@ -360,6 +450,24 @@ body.shake { animation: shake 0.9s linear; }
 .info li .s-secret, .info li .s-gold { color: #ffd84a; }
 .info li span:nth-child(2) { flex: 1; }
 .info li em { font-style: normal; opacity: 0.8; }
+.reset {
+  position: relative;
+  overflow: hidden;
+  margin-top: 2%;
+  padding: 7px 18px 8px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.3);
+  font-weight: 500;
+  font-size: clamp(12px, 1.4vw, 15px);
+  color: #e6f2e8;
+  cursor: pointer;
+  touch-action: none;
+}
+/* The bar that fills while the button is held, and drops back at once if it is let go. */
+.reset i { position: absolute; inset: 0; width: 0; background: #c8372d; transition: width 0.2s; }
+.reset.holding i { width: 100%; transition: width var(--hold) linear; }
+.reset span { position: relative; }
 
 .sheet {
   display: grid;
@@ -410,12 +518,67 @@ body.shake { animation: shake 0.9s linear; }
 }
 
 .book-nav, .book-close, .zoom-btn { position: absolute; z-index: 6; }
-.book-prev { left: 1vw; top: calc(50% - 27px); }
-.book-next { right: 1vw; top: calc(50% - 27px); }
+/* The page-turn buttons sit right against the binder, are big, and can be hit from well outside their edge. */
+.book-nav { width: 68px; height: 68px; top: calc(50% - 34px); }
+.book-nav::before { content: ''; position: absolute; inset: -24px; border-radius: 50%; }
+.book-prev { left: max(6px, calc(50% - var(--pw) - 80px)); }
+.book-next { right: max(6px, calc(50% - var(--pw) - 80px)); }
 .book-close, .zoom-close { top: 2vh; right: 1.5vw; }
 .book-nav[hidden] { display: none; }
-.book-nav svg { display: block; width: 26px; height: 26px; fill: none; stroke: #fff; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+.book-nav svg { display: block; width: 34px; height: 34px; fill: none; stroke: #fff; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
 .book-page { position: absolute; left: 0; right: 0; bottom: 2vh; text-align: center; font-weight: 500; opacity: 0.7; }
+
+/* ---- the cards gained in a trade ------------------------------------------------- */
+
+#gained {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3.2vh;
+  /* Solid, so the covers over the waiting cards match it exactly. */
+  background: #04090b;
+  animation: fade 0.3s;
+}
+#gained.on { display: flex; }
+#gained h2 {
+  margin: 0;
+  font-family: 'Lilita One', sans-serif;
+  font-weight: 400;
+  font-size: clamp(26px, 4.4vw, 50px);
+  color: #ffd84a;
+  text-shadow: 0 3px 0 #7a4500, 0 0 22px rgba(255, 200, 60, 0.6);
+}
+/* Rows of five; a shorter last row sits in the middle. */
+.gained-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--gap); width: calc(var(--w) * var(--cols) + var(--gap) * (var(--cols) - 1)); }
+/* Each card waits in its slot under a cover the colour of the screen, already drawn. When the screen
+   says go (see trade.ts) the covers fade away one after another (--deal) while each card rises a little
+   into place: a rise and a fade, nothing bouncy.
+   It is done with a cover, not by fading the card itself, because a foil card is expensive to redraw:
+   fading it would redraw it on every frame, and a card kept invisible is not drawn at all until it
+   appears, either of which makes the cards pop in late instead of easing in. For the same reason the
+   foil does not shimmer here: as in the binder, each card's light is frozen at its own frame.
+   (The #gained in front keeps these ahead of the general shimmer rule in card.css.) */
+.gained-slot { position: relative; width: var(--w); }
+.gained-slot .card { width: 100%; transform: translateY(26px) scale(0.94); }
+/* The cover reaches further down than the slot, because the waiting card sits a little low and would show beneath it. */
+.gained-slot::after { content: ''; position: absolute; inset: -3% -3% -40px; z-index: 2; border-radius: 6%; background: #04090b; pointer-events: none; }
+#gained .card.shine:not(.manual):not(.fin-matte) { animation: shimmer 5.5s ease-in-out var(--delay, 0s) infinite paused; }
+#gained.go .gained-slot .card { transform: none; animation: rise 0.42s cubic-bezier(0.2, 0.8, 0.3, 1) var(--deal, 0s) backwards; }
+#gained.go .gained-slot .card.shine:not(.manual):not(.fin-matte) {
+  animation: rise 0.42s cubic-bezier(0.2, 0.8, 0.3, 1) var(--deal, 0s) backwards, shimmer 5.5s ease-in-out var(--delay, 0s) infinite paused;
+}
+#gained.go .gained-slot::after { opacity: 0; animation: uncover 0.42s ease-out var(--deal, 0s) backwards; }
+@keyframes rise { from { transform: translateY(26px) scale(0.94); } }
+@keyframes uncover { from { opacity: 1; } }
+#gained .trade { opacity: 0; }
+#gained.go .trade { opacity: 1; animation: dealt 0.5s cubic-bezier(0.2, 0.8, 0.3, 1) var(--after, 1s) backwards; }
+@keyframes dealt { from { opacity: 0; transform: translateY(26px) scale(0.94); } }
+#gained h2 { animation: dealt 0.5s cubic-bezier(0.2, 0.8, 0.3, 1) 0.05s backwards; }
+#gained .trade { margin: 0; font-size: clamp(18px, 2.4vw, 26px); padding: 10px 34px 12px; }
 
 /* ---- looking at one card -------------------------------------------------------- */
 

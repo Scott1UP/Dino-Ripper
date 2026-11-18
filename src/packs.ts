@@ -462,7 +462,7 @@ export class Packs {
 
   private down(e: PointerEvent) {
     if (!this.interactive || this.drag) return;
-    if ((e.target as Element).closest?.('button, #binder, #zoom')) return;
+    if ((e.target as Element).closest?.('button, label, #binder, #zoom')) return;
     const pack = this.hit(e.clientX, e.clientY);
     if (!pack || pack.manual) return;
     this.drag = {
@@ -540,6 +540,18 @@ export class Packs {
       audio.drop();
     }
     this.place();
+  }
+
+  /** Moves the top pack of the shelf into the middle, as a tap on it would. Resolves once it has arrived. */
+  async takeTop(): Promise<boolean> {
+    const top = this.packs.filter((p) => p.where === 'shelf').sort((a, b) => b.order - a.order)[0];
+    if (!top || this.center) return false;
+    this.center = top;
+    top.where = 'center';
+    this.place();
+    audio.grab();
+    await wait(700);
+    return true;
   }
 
   // ---- opening --------------------------------------------------------------

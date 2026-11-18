@@ -5,6 +5,7 @@ import { audio } from './audio';
 import { createCard } from './card';
 import { type CardDef, CARDS, isBigPull, RARITY, type Rarity, TOTAL } from './cards';
 import { store } from './store';
+import { canTrade, TRADE_LABEL, tradeAll } from './trade';
 import { wait } from './tween';
 import { zoomCards } from './zoom';
 
@@ -12,6 +13,8 @@ import { zoomCards } from './zoom';
 const COLS = 3;
 const ROWS = 3;
 const PER_PAGE = COLS * ROWS;
+/** How long the reset button has to be held, in milliseconds. */
+const RESET_HOLD = 2500;
 const PAGES = Math.ceil(TOTAL / PER_PAGE);
 /** Side 0 is the inside of the front cover, sides 1..PAGES hold cards; the last side must be a right-hand one. */
 const LAST_SIDE = PAGES % 2 ? PAGES : PAGES + 1;
@@ -30,7 +33,9 @@ let busy = false;
 let isOpen = false;
 
 export function refreshPeek() {
-  peek.querySelector('.peek-count')!.textContent = `${store.owned()}/${TOTAL}`;
+  const count = peek.querySelector('.peek-count')!;
+  count.textContent = `${store.owned()}/${TOTAL}`;
+  count.classList.toggle('complete', store.owned() === TOTAL);
 }
 
 function el(html: string): HTMLElement {
@@ -93,13 +98,57 @@ function infoPage(): HTMLElement {
       return `<li><span class="stars s-${r}">${RARITY[r].stars}</span><span>${RARITY[r].label}</span><em>${have}/${all.length}</em></li>`;
     })
     .join('');
-  return el(`
-    <div class="side inside info">
+  const complete = owned === TOTAL;
+  const offer = canTrade() ? `<button class="trade" type="button">${TRADE_LABEL}</button>` : '';
+  const page = el(`
+    <div class="side inside info${complete ? ' complete' : ''}">
       <img src="./art/set-logo.webp" alt="Titan Dawn" draggable="false" />
+      ${complete ? '<div class="info-done">★ Collection complete! ★</div>' : ''}
       <div class="info-count"><b>${owned}</b> of ${TOTAL} cards</div>
       <div class="info-bar"><i style="width:${(owned / TOTAL) * 100}%"></i></div>
+      <div class="info-packs">${store.luck.packs} ${store.luck.packs === 1 ? 'pack' : 'packs'} opened</div>
       <ul>${rows}</ul>
+      ${offer}
+      <button class="reset" type="button" style="--hold:${RESET_HOLD}ms"><i></i><span>Hold to reset collection</span></button>
     </div>`);
+  holdToReset(page.querySelector<HTMLElement>('.reset')!);
+  page.querySelector('.trade')?.addEventListener('click', () => {
+    if (busy) return;
+    void tradeAll();
+    setPage(left, 2 * spread);
+    setPage(right, 2 * spread + 1);
+  });
+  return page;
+}
+
+/**
+ * The reset button only acts if it is held down for RESET_HOLD without letting go, while a red
+ * bar fills across it. A tap, or a hold given up early, does nothing.
+ */
+function holdToReset(button: HTMLElement) {
+  let timer = 0;
+  const cancel = () => {
+    clearTimeout(timer);
+    button.classList.remove('holding');
+  };
+  button.addEventListener('pointerdown', (e) => {
+    if (busy) return;
+    button.setPointerCapture(e.pointerId);
+    button.classList.add('holding');
+    audio.tap();
+    timer = window.setTimeout(() => {
+      store.reset();
+      refreshPeek();
+      dispatchEvent(new Event('collection-changed'));
+      audio.binder();
+      // Show the emptied binder straight away.
+      setPage(left, 2 * spread);
+      setPage(right, 2 * spread + 1);
+    }, RESET_HOLD);
+  });
+  for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) button.addEventListener(type, cancel);
+  // A long press on a tablet would otherwise bring up the browser's own menu.
+  button.addEventListener('contextmenu', (e) => e.preventDefault());
 }
 
 function side(i: number): HTMLElement | null {
@@ -159,8 +208,9 @@ async function turn(dir: 1 | -1) {
 
 function size() {
   const ph = Math.min(innerHeight * 0.84, innerWidth * 0.43 * 1.32);
-  book.style.setProperty('--ph', `${ph}px`);
-  book.style.setProperty('--pw', `${ph / 1.32}px`);
+  // Set on the whole overlay, so the page-turn buttons can sit against the binder's edges.
+  root.style.setProperty('--ph', `${ph}px`);
+  root.style.setProperty('--pw', `${ph / 1.32}px`);
   return { pw: ph / 1.32, ph };
 }
 
@@ -183,7 +233,7 @@ function atPeek(pw: number): string {
   return `translate(${dx}px, ${dy}px) scale(${k}) rotate(9deg) translateX(${-pw / 2}px)`;
 }
 
-export async function openBinder() {
+async function openBinder() {
   if (isOpen) return;
   isOpen = true;
   busy = true;
@@ -195,6 +245,7 @@ export async function openBinder() {
     <button class="book-nav book-prev" type="button" aria-label="Previous page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg></button>
     <button class="book-nav book-next" type="button" aria-label="Next page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg></button>
     <button class="book-close" type="button" aria-label="Close binder">✕</button>
+    <div class="book-tip">Tap a card for a closer look</div>
     <div class="book-page"></div>`;
   book = root.querySelector('.book')!;
   left = root.querySelector('.page.left')!;
