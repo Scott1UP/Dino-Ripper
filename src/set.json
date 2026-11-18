@@ -2698,7 +2698,7 @@
   "scene": "A herd of Brachiosaurus crossing a wide valley at sunrise, the nearest one huge in the foreground with birds riding on its back, layers of hills, a river and a volcano behind.",
   "no": 99,
   "artistName": "Otto Papier",
-  "spots": "radial-gradient(ellipse 32% 10% at 26% 10%, #000 42%, transparent 100%), radial-gradient(ellipse 30% 18% at 30% 44%, #000 42%, transparent 100%), radial-gradient(ellipse 34% 9% at 70% 63%, #000 42%, transparent 100%)"
+  "spots": "radial-gradient(ellipse 34% 11% at 28% 24%, #000 42%, transparent 100%), radial-gradient(ellipse 30% 17% at 52% 46%, #000 42%, transparent 100%), radial-gradient(ellipse 34% 9% at 76% 60%, #000 42%, transparent 100%)"
  },
  {
   "name": "Tyrannosaurus Rex",

@@ -2,6 +2,7 @@
 //
 //   npm run art -- all            generate everything that is missing, then pack
 //   npm run art -- gen rex        generate (or regenerate) one image by id
+//   npm run art -- tweak rex "..."  redraw one picture with a change, keeping everything else
 //   npm run art -- pack           convert art/raw/*.png into public/art/*.webp
 //   npm run art -- list           list every id
 //
@@ -29,9 +30,11 @@ const NO_TEXT =
 
 const WIDE = '1536x1024';
 const TALL = '1024x1536';
+// A full-art card prints its name and power across the top and its moves across the bottom third.
 const FULL_ART =
-  'Vertical composition for a full-art trading card: the dinosaur\'s head and body sit in the upper two thirds ' +
-  'of the image; the lower third is calmer scenery so that words can be printed over it.';
+  'Vertical composition for a full-art trading card: the top sixth of the image is only sky or background, with ' +
+  'no head, face or other important detail in it; the dinosaur\'s head and body sit below that, in the upper two ' +
+  'thirds of the image; the lower third is calmer scenery so that words can be printed over it.';
 
 // `pose` says how the dinosaur is posed and seen; it differs from pack to pack.
 const packArt = (subject, pose) => ({
@@ -51,7 +54,7 @@ const LOGO_STYLE =
 
 // ---- the artists -----------------------------------------------------------------------------
 // The full set is drawn by a roster of invented artists, each with a hand of their own, the way a
-// real card set is. These are interpretations, not studies: an artist may simplify, exaggerate or
+// real card set is. This is how each one draws; their names are in scripts/build-set.py. These are interpretations, not studies: an artist may simplify, exaggerate or
 // reinvent the animal, so long as you can still tell which dinosaur it is.
 const LOOSE =
   'This is the artist\'s own interpretation, not a realistic or scientific picture: the anatomy and proportions do ' +
@@ -62,45 +65,38 @@ const LOOSE =
 
 export const ARTISTS = {
   crayon: {
-    name: 'Pip Scribble',
     style:
       'Style: a pencil and wax-crayon drawing on cream sketchbook paper: visible waxy crayon strokes, soft graphite ' +
       'outlines, slightly uneven colouring, paper grain showing through.',
   },
   watercolour: {
-    name: 'Wren Loch',
     style:
       'Style: a loose traditional watercolour painting with fine ink linework: wet-on-wet washes, soft colour ' +
       'bleeds and blooms, granulating pigment, white paper showing at the edges of the washes.',
   },
   pixel: {
-    name: 'Bea Bitmap',
     style:
       'Style: detailed 16-bit pixel art like a classic 1990s console game: crisp square pixels, a limited vivid ' +
       'palette, dithered shading, clean dark outlines, a layered parallax-style background.',
   },
   spray: {
-    name: 'Dax One',
     style:
       'Style: spray-paint street art on a wall: bold stencil shapes, soft aerosol overspray, paint drips, splatter, ' +
       'neon colours against deep shadow, energetic abstract bursts of colour behind the subject.',
   },
   storybook: {
-    name: 'Odette Fable',
     style:
       'Style: a breathtaking, richly detailed storybook illustration in gouache and coloured ink, the kind you could ' +
       'look at for minutes: luminous colour, glowing light, hundreds of small charming details, decorative flowing ' +
       'shapes, a complete living world around the subject.',
   },
   gold: {
-    name: 'The Goldsmith',
     style:
       'Style: the entire image is one solid slab of polished yellow gold, sculpted as a bas-relief: the subject is ' +
       'raised, embossed metal; the background is gold too, finely engraved with radiating sunburst lines and a ' +
       'border of small scale patterns. Everything is gold, only gold: bright highlights, deep amber shadows.',
   },
   mabel: {
-    name: 'Mabel, age 6',
     style:
       'Style: a real drawing by a six-year-old child, in felt-tip pens and wax crayon on white printer paper. Wobbly ' +
       'outlines, scribbled colouring that goes over the lines and leaves white gaps, wildly wrong proportions, ' +
@@ -109,35 +105,30 @@ export const ARTISTS = {
       'top. Genuinely naive and charming, not a skilled adult imitating a child.',
   },
   collage: {
-    name: 'Otto Papier',
     style:
       'Style: a cut-paper collage. The animal and everything around it are built from simple shapes cut and torn ' +
       'out of hand-painted tissue paper and coloured card, with visible brush texture, overlapping layers, slightly ' +
       'ragged edges and soft shadows under the paper, on an off-white background. Bold, simple, joyful shapes.',
   },
   clay: {
-    name: 'Dot Morrow',
     style:
       'Style: a photograph of a handmade plasticine clay model, like a frame from a stop-motion film. A chubby, ' +
       'lumpy clay animal with visible thumbprints and tool marks, simple round ball eyes, sitting in a tiny handmade ' +
       'clay and cardboard set, lit softly like a miniature film stage.',
   },
   lino: {
-    name: 'Ines Block',
     style:
       'Style: a hand-pulled linocut print in just two ink colours plus the cream paper. Bold carved shapes, chunky ' +
       'gouged lines and hatch marks, slightly uneven ink coverage and misregistered colour layers, strong decorative ' +
       'pattern on the animal\'s body. Graphic and striking.',
   },
   shapes: {
-    name: 'Bruno Kube',
     style:
       'Style: a flat mid-century modern poster built only from simple geometric shapes: circles, triangles, ' +
       'rectangles and half-circles in five flat colours with no outlines and no shading, a little printed grain. ' +
       'The animal is reduced to a clever, minimal arrangement of shapes.',
   },
   toon: {
-    name: 'Sunny Hollis',
     style:
       'Style: a frame from a modern preschool animated TV series. Clean, flat vector shapes with soft rounded ' +
       'corners, a warm bright palette, simple friendly faces with small dot eyes and expressive eyebrows, thin ' +
@@ -145,65 +136,55 @@ export const ARTISTS = {
       'a simple sunny backdrop of rolling hills and tidy stylised trees. Gentle, warm and funny.',
   },
   kawaii: {
-    name: 'Momo Chi',
     style:
       'Style: a super-cute sticker illustration. The animal is a tiny round blob with a huge head, stubby limbs, ' +
       'big sparkly eyes and pink cheeks, drawn with smooth pastel colours and a thick white sticker outline, with ' +
       'little stars and hearts floating around it on a soft pastel background.',
   },
   glass: {
-    name: 'Vitra Lux',
     style:
       'Style: a stained-glass window. The animal and its world are made of pieces of richly coloured glass ' +
       'separated by thick black lead lines, with light glowing through the glass, bold simplified shapes and a ' +
       'radiating sunburst behind.',
   },
   chalk: {
-    name: 'Miss Tavish',
     style:
       'Style: a drawing in coloured chalk on a dusty green school blackboard. Soft smudgy chalk lines, patches of ' +
       'rubbed-in colour, chalk dust and half-wiped marks around it, drawn with simple confident strokes.',
   },
   felt: {
-    name: 'Nana Stitch',
     style:
       'Style: a photograph of a handmade felt applique picture. The animal is made from pieces of coloured felt ' +
       'sewn on with big visible stitches, button eyes, embroidered thread details and a little stuffing so it puffs ' +
       'out, on a patterned fabric background.',
   },
   ink: {
-    name: 'Kaze',
     style:
       'Style: an East Asian ink-wash brush painting. The animal is suggested in a few bold, sweeping black brush ' +
       'strokes with dry-brush texture and soft grey washes, one accent of red, and a great deal of empty rice paper.',
   },
   cave: {
-    name: 'Og',
     style:
       'Style: a prehistoric cave painting. The animal is drawn in red and yellow ochre and charcoal on a rough ' +
       'sandy rock wall, simple and stylised, with a few small hand prints and tiny stick figures holding spears nearby.',
   },
   neon: {
-    name: 'Vega',
     style:
       'Style: glowing neon line art on a black background. The animal is drawn in a few continuous bright tube-light ' +
       'lines in hot pink, cyan and yellow, with a soft glow, like a neon sign, above a simple glowing grid horizon.',
   },
   biro: {
-    name: 'Ben, Class 4B',
     style:
       'Style: a doodle in blue ballpoint pen on lined school notebook paper with a red margin line. Scratchy, ' +
       'energetic scribbled lines, heavy cross-hatching, bits coloured in with a yellow highlighter, the animal ' +
       'given comic-book action lines and explosions, as drawn by a bored and dinosaur-mad ten-year-old.',
   },
   origami: {
-    name: 'Ori Fold',
     style:
       'Style: a photograph of an origami model. The animal is folded from a single sheet of patterned paper, all ' +
       'flat facets and crisp creases, standing on a plain surface among a few simple folded paper plants, in soft daylight.',
   },
   swirl: {
-    name: 'Flora Swirl',
     style:
       'Style: a 1960s psychedelic poster. The animal is drawn in flowing, melting curves and filled with swirling ' +
       'patterns in clashing saturated colours, orange against purple, pink against green, with rippling rings ' +
@@ -296,10 +277,11 @@ const exists = (p) => access(p).then(() => true, () => false);
 async function openai(endpoint, body) {
   const key = process.env.OPENAI_API_KEY;
   if (!key) throw new Error('OPENAI_API_KEY is not set (put it in .env.local)');
+  const isForm = body instanceof FormData;
   const res = await fetch(`https://api.openai.com/v1/${endpoint}`, {
     method: 'POST',
-    headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
+    headers: { Authorization: `Bearer ${key}`, ...(isForm ? {} : { 'Content-Type': 'application/json' }) },
+    body: isForm ? body : JSON.stringify(body),
   });
   const json = await res.json();
   if (!res.ok) throw new Error(`OpenAI ${res.status}: ${json.error?.message ?? JSON.stringify(json)}`);
@@ -321,6 +303,33 @@ async function gen(id) {
   await mkdir(RAW, { recursive: true });
   await writeFile(path.join(RAW, `${id}.png`), png);
   console.log(`[${id}] wrote art/raw/${id}.png`);
+}
+
+/**
+ * Redraws one picture with a change applied, keeping its artist's style and everything else about
+ * it. The previous version is kept beside it as <id>.prev.png.
+ */
+async function tweak(id, instruction) {
+  const spec = IMAGES[id];
+  if (!spec) throw new Error(`unknown image id "${id}"`);
+  const file = path.join(RAW, `${id}.png`);
+  const current = await readFile(file);
+  const form = new FormData();
+  form.set('model', MODEL);
+  form.set(
+    'prompt',
+    `Redraw this exact picture: the same subject, the same art style and materials, the same colours and the same ` +
+      `scene, with one change. ${instruction} Change nothing else. ${NO_TEXT}`,
+  );
+  form.set('size', spec.size);
+  form.set('quality', QUALITY);
+  form.set('output_format', 'png');
+  form.append('image[]', new Blob([current], { type: 'image/png' }), `${id}.png`);
+  console.log(`[${id}] redrawing with ${MODEL}...`);
+  const png = await openai('images/edits', form);
+  await writeFile(path.join(RAW, `${id}.prev.png`), current);
+  await writeFile(file, png);
+  console.log(`[${id}] wrote art/raw/${id}.png (previous kept as ${id}.prev.png)`);
 }
 
 async function pack() {
@@ -362,6 +371,9 @@ if (cmd === 'list') {
   const failed = await pool(args);
   await pack();
   if (failed.length) process.exitCode = 1;
+} else if (cmd === 'tweak') {
+  await tweak(args[0], args.slice(1).join(' '));
+  await pack();
 } else if (cmd === 'pack') {
   await pack();
 } else if (cmd === 'all') {
@@ -374,5 +386,5 @@ if (cmd === 'list') {
     process.exitCode = 1;
   }
 } else {
-  console.log('usage: npm run art -- all | gen <id...> | pack | list');
+  console.log('usage: npm run art -- all | gen <id...> | tweak <id> "<change>" | pack | list');
 }

@@ -300,7 +300,7 @@ SPOTS = {
     'spino-secret': [(30, 15, 36, 30), (17, 8, 71, 8), (62, 11, 50, 69)],     # its sail, the moon, the water
     'trike-secret': [(42, 8, 52, 8), (16, 12, 82, 22), (46, 11, 52, 56)],      # the rainbow, the waterfall, the babies
     'raptor-secret': [(15, 8, 72, 8), (38, 15, 58, 38), (64, 9, 50, 86)],      # the moon, the lead raptor, the glowing ground
-    'brachio-secret': [(32, 10, 26, 10), (30, 18, 30, 44), (34, 9, 70, 63)],   # the sun, the nearest Brachiosaurus, the river
+    'brachio-secret': [(34, 11, 28, 24), (30, 17, 52, 46), (34, 9, 76, 60)],   # the sun, the nearest Brachiosaurus, the river
 }
 
 # How much stronger the alternate-art versions are than their base card.
