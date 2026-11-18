@@ -1,0 +1,612 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { height: 100%; margin: 0; }
+body {
+  overflow: hidden;
+  background: #050d10;
+  color: #fff;
+  font-family: 'Fredoka', system-ui, sans-serif;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+button { font: inherit; color: inherit; -webkit-tap-highlight-color: transparent; }
+
+#bg {
+  position: fixed;
+  inset: 0;
+  background:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.018) 0 2px, transparent 2px 16px),
+    radial-gradient(ellipse at 46% 46%, #1f4f57 0%, #0e2a31 42%, #050d10 100%);
+}
+
+#brand {
+  position: fixed;
+  z-index: 3;
+  top: 2vh;
+  left: 2vw;
+  height: min(12vh, 11vw);
+  pointer-events: none;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.5));
+}
+
+#hint {
+  position: fixed;
+  z-index: 12;
+  left: 0;
+  width: 92%;
+  bottom: 5vh;
+  text-align: center;
+  font-family: 'Lilita One', sans-serif;
+  font-size: clamp(20px, 3.2vw, 34px);
+  letter-spacing: 0.02em;
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.45), 0 0 24px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+#hint.on { opacity: 1; animation: nudge 1.6s ease-in-out infinite; }
+#hint.centred { width: 100%; }
+@keyframes nudge { 50% { transform: translateY(-6px); } }
+
+/* A quiet line of help above the cards on the table, and above the open binder. */
+#tip, .book-tip {
+  position: fixed;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-weight: 500;
+  font-size: clamp(14px, 1.7vw, 18px);
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.72);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+#tip { z-index: 4; top: 6vh; opacity: 0; transition: opacity 0.4s; }
+#tip.on { opacity: 1; }
+.book-tip { top: 2.6vh; animation: fade 0.5s 0.9s backwards; }
+
+/* Points at the packs while there is nothing else to do. */
+#arrow {
+  position: fixed;
+  z-index: 12;
+  left: 0;
+  top: 0;
+  width: clamp(44px, 6vw, 72px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  filter: drop-shadow(0 4px 0 #7a3d00) drop-shadow(0 8px 12px rgba(0, 0, 0, 0.5));
+}
+#arrow.on { opacity: 1; }
+#arrow svg { display: block; width: 100%; fill: #ffd84a; stroke: #7a3d00; stroke-width: 3; stroke-linejoin: round; animation: point 0.9s ease-in-out infinite; }
+@keyframes point { 50% { transform: translateX(-28%); } }
+
+#packs, #fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+#packs { z-index: 10; }
+#fx { z-index: 60; }
+
+/* ---- cards on the table ----------------------------------------------------- */
+
+.card.on-table { position: fixed; left: 0; top: 0; z-index: 5; cursor: pointer; }
+
+.card.charge .card-inner { animation: jitter 0.11s linear infinite; }
+@keyframes jitter {
+  0% { transform: rotateY(180deg) translate(-0.7cqw, 0.4cqw) rotate(-0.7deg); }
+  50% { transform: rotateY(180deg) translate(0.7cqw, -0.4cqw) rotate(0.7deg); }
+  100% { transform: rotateY(180deg) translate(-0.4cqw, -0.6cqw) rotate(-0.4deg); }
+}
+.card.charge .back { animation: charge 0.45s ease-in-out infinite alternate; }
+.r-ultra.charge .back { --aura: rgba(225, 240, 255, 0.95); --aura2: rgba(120, 190, 255, 0.7); }
+.r-secret.charge .back { --aura: rgba(150, 200, 255, 0.95); --aura2: rgba(210, 140, 255, 0.7); }
+.r-gold.charge .back { --aura: rgba(255, 220, 90, 1); --aura2: rgba(255, 160, 30, 0.8); }
+@keyframes charge {
+  from { box-shadow: 0 0 4cqw 1cqw var(--aura), 0 0 10cqw 3cqw var(--aura2); filter: brightness(1); }
+  to { box-shadow: 0 0 9cqw 3cqw var(--aura), 0 0 26cqw 9cqw var(--aura2); filter: brightness(1.5); }
+}
+.r-ultra.glow .front { box-shadow: 0 0 5cqw 1cqw rgba(200, 225, 255, 0.75), 0 1cqw 3cqw rgba(0, 0, 0, 0.45); }
+.r-secret.glow .front { box-shadow: 0 0 6cqw 1.5cqw rgba(170, 215, 255, 0.85), 0 0 14cqw 4cqw rgba(215, 150, 255, 0.5); }
+.r-gold.glow .front { box-shadow: 0 0 7cqw 2cqw rgba(255, 222, 100, 0.95), 0 0 18cqw 6cqw rgba(255, 160, 30, 0.6); }
+
+/* The soft plastic sleeve a big pull is slipped into before it goes back with the others. */
+.sleeve {
+  position: absolute;
+  z-index: 2;
+  inset: -5cqw -3cqw -3cqw;
+  border: 0.35cqw solid rgba(255, 255, 255, 0.5);
+  border-top-color: rgba(255, 255, 255, 0.2);
+  border-radius: 2cqw 2cqw 4cqw 4cqw;
+  background:
+    linear-gradient(118deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.04) 22%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.16) 82%, rgba(255, 255, 255, 0.05)),
+    rgba(210, 230, 255, 0.07);
+  box-shadow: inset 0 0 2.5cqw rgba(255, 255, 255, 0.22), 0 1cqw 2.5cqw rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  animation: sleeve 0.45s cubic-bezier(0.3, 0.9, 0.3, 1) backwards;
+  transition: transform 0.45s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.45s;
+}
+/* In the binder the sleeve is simply there; taken out to look at, it slides off and back on. */
+.sleeve.still { animation: none; }
+.sleeve.off { transform: translateY(105%); opacity: 0; }
+/* It comes up from below, the way a card is pushed down into a sleeve. */
+@keyframes sleeve { from { transform: translateY(105%); opacity: 0; } }
+
+.new-chip {
+  position: absolute;
+  z-index: 3;
+  top: -6cqw;
+  left: -4cqw;
+  padding: 0.8cqw 2.6cqw;
+  border-radius: 3cqw;
+  background: #ff3d6e;
+  font-family: 'Lilita One', sans-serif;
+  font-size: 6.4cqw;
+  line-height: 1.1;
+  transform: rotate(-10deg);
+  box-shadow: 0 0.6cqw 0 #a3123c, 0 1.2cqw 2cqw rgba(0, 0, 0, 0.4);
+  animation: chip 0.4s cubic-bezier(0.2, 1.6, 0.4, 1) 0.35s backwards;
+  pointer-events: none;
+}
+@keyframes chip { from { transform: rotate(-10deg) scale(0); } }
+
+/* ---- buttons ------------------------------------------------------------------- */
+
+#next {
+  position: fixed;
+  z-index: 12;
+  left: 50%;
+  top: 84vh;
+  padding: 12px 46px 14px;
+  border: 3px solid #7a3d00;
+  border-radius: 999px;
+  background: linear-gradient(#ffe57a, #f59a1b);
+  color: #4a2500;
+  font-family: 'Lilita One', sans-serif;
+  font-size: clamp(22px, 3vw, 30px);
+  box-shadow: 0 6px 0 #7a3d00, 0 14px 26px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 20px);
+  transition: opacity 0.3s, transform 0.3s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+#next.on { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
+#next.on:active { transform: translate(-50%, 4px); box-shadow: 0 2px 0 #7a3d00, 0 6px 12px rgba(0, 0, 0, 0.45); }
+
+/* The tick box under the Next Pack button. */
+#auto {
+  position: fixed;
+  z-index: 12;
+  left: 50%;
+  top: 94vh;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  font-weight: 500;
+  font-size: clamp(15px, 1.9vw, 19px);
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transform: translateX(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+#auto.on { opacity: 1; pointer-events: auto; }
+#auto input { position: absolute; opacity: 0; pointer-events: none; }
+#auto i {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 7px;
+  background: rgba(10, 24, 28, 0.6);
+}
+#auto input:checked + i { border-color: #7a3d00; background: linear-gradient(#ffe57a, #f59a1b); }
+#auto input:checked + i::after { content: ''; width: 7px; height: 13px; margin-top: -3px; border: solid #4a2500; border-width: 0 3.5px 3.5px 0; transform: rotate(45deg); }
+
+#mute, .zoom-btn, .zoom-rotate i, .book-nav, .book-close {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(10, 24, 28, 0.75);
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
+}
+#mute:active, .zoom-btn:active, .book-nav:active, .book-close:active { background: rgba(255, 255, 255, 0.25); }
+#mute { position: fixed; z-index: 12; top: 2vh; right: 1.5vw; width: 44px; height: 44px; padding: 0; font-size: 20px; }
+.zoom-close, .book-close { font-size: 24px; padding: 0; }
+
+/* ---- the binder, peeking out of the corner ------------------------------------- */
+
+#binder-peek {
+  position: fixed;
+  z-index: 12;
+  left: 0;
+  bottom: 0;
+  width: clamp(150px, 19vw, 250px);
+  aspect-ratio: 1 / 1.32;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  transform: translate(-12%, 55%) rotate(9deg);
+  transition: transform 0.4s cubic-bezier(0.2, 1.3, 0.4, 1);
+}
+@media (hover: hover) {
+  #binder-peek:hover { transform: translate(-6%, 30%) rotate(5deg); }
+}
+#binder-peek.away, .binder-open #binder-peek { transform: translate(-30%, 125%) rotate(9deg); }
+#binder-peek.bump .peek-cover { animation: bump 0.3s ease-out; }
+@keyframes bump { 40% { transform: translateY(8%) scale(1.04); } }
+.peek-cover {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 3% 7% 7% 3%;
+  background: url('/art/binder.webp') center / cover;
+  box-shadow: inset 14px 0 12px -8px rgba(0, 0, 0, 0.6), inset 3px 0 0 rgba(255, 255, 255, 0.12), 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+.peek-count {
+  position: absolute;
+  top: -3%;
+  right: -4%;
+  padding: 2px 11px 3px;
+  border-radius: 99px;
+  background: #ffd84a;
+  color: #4a2500;
+  font-family: 'Lilita One', sans-serif;
+  font-size: 17px;
+  box-shadow: 0 3px 0 #a36a00;
+}
+.peek-count.complete { background: linear-gradient(#fff3b0, #f5b700); box-shadow: 0 3px 0 #a36a00, 0 0 14px rgba(255, 210, 80, 0.9); }
+
+/* ---- celebrations ------------------------------------------------------------- */
+
+#celebrate {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 54%, rgba(12, 14, 30, 0.6), rgba(0, 0, 0, 0.93) 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+#celebrate.on { opacity: 1; pointer-events: auto; }
+.rays {
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  width: 240vmax;
+  height: 240vmax;
+  margin: -120vmax 0 0 -120vmax;
+  opacity: 0;
+  transition: opacity 0.5s;
+  -webkit-mask-image: radial-gradient(circle, #000 4%, transparent 46%);
+  mask-image: radial-gradient(circle, #000 4%, transparent 46%);
+}
+.secret .rays {
+  background: repeating-conic-gradient(#ff8fb0 0 5deg, transparent 5deg 15deg, #8fd6ff 15deg 20deg, transparent 20deg 30deg, #c8a8ff 30deg 35deg, transparent 35deg 45deg, #fff39a 45deg 50deg, transparent 50deg 60deg);
+}
+.ultra .rays { background: repeating-conic-gradient(#e6f2ff 0 5deg, transparent 5deg 15deg, #8fc8ff 15deg 18deg, transparent 18deg 30deg); }
+.gold .rays { background: repeating-conic-gradient(#ffd84a 0 6deg, transparent 6deg 15deg, #fff3b0 15deg 18deg, transparent 18deg 30deg); }
+/* The rays only turn while a celebration is on screen. */
+#celebrate.on .rays { animation: spin 16s linear infinite; }
+#celebrate.lit .rays { opacity: 0.7; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+#banner {
+  position: fixed;
+  z-index: 30;
+  left: 0;
+  right: 0;
+  top: 2.5vh;
+  text-align: center;
+  font-family: 'Lilita One', sans-serif;
+  font-size: min(9vw, 8.2vh);
+  line-height: 0.98;
+  pointer-events: none;
+  opacity: 0;
+}
+#banner.on { animation: banner 0.7s cubic-bezier(0.2, 1.5, 0.4, 1) forwards; }
+@keyframes banner { from { opacity: 0; transform: scale(0.2); } to { opacity: 1; transform: scale(1); } }
+#banner small { display: block; font-size: 0.4em; letter-spacing: 0.2em; color: #ffd84a; }
+#banner.gold { color: #ffd84a; text-shadow: 0 0.06em 0 #7a4500, 0 0 0.5em rgba(255, 190, 40, 0.9); }
+#banner.secret { color: #bfe6ff; text-shadow: 0 0.06em 0 #3b2a8a, 0 0 0.5em rgba(190, 150, 255, 0.9); }
+#banner.ultra { color: #f2f8ff; text-shadow: 0 0.06em 0 #1f4f8a, 0 0 0.5em rgba(120, 190, 255, 0.9); }
+#banner.ultra small { color: #e6f2ff; }
+/* The finished-collection banner shows over anything, the open binder included, and sits mid-screen. */
+#banner.complete { z-index: 65; top: 16vh; font-size: min(10vw, 11vh); }
+#banner.complete img { display: block; width: min(30vw, 28vh); margin: 0 auto 0.12em; filter: drop-shadow(0 0.08em 0.12em rgba(0, 0, 0, 0.6)); }
+#banner.complete small { margin-top: 0.12em; }
+/* Under the celebrated card, once it can be put away. */
+#tap {
+  position: fixed;
+  z-index: 30;
+  left: 50%;
+  top: 88.5vh;
+  padding: 8px 30px 10px;
+  border: 3px solid #7a3d00;
+  border-radius: 999px;
+  background: linear-gradient(#ffe57a, #f59a1b);
+  color: #4a2500;
+  font-family: 'Lilita One', sans-serif;
+  font-size: clamp(18px, 2.4vw, 24px);
+  box-shadow: 0 5px 0 #7a3d00, 0 12px 22px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transform: translate(-50%, 16px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+#tap.on { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
+
+body.flash::after { content: ''; position: fixed; inset: 0; z-index: 70; background: #fff; pointer-events: none; animation: flash 0.7s ease-out forwards; }
+@keyframes flash { from { opacity: 0.95; } to { opacity: 0; } }
+body.shake { animation: shake 0.9s linear; }
+@keyframes shake {
+  10%, 50%, 90% { transform: translate(-9px, 5px); }
+  30%, 70% { transform: translate(9px, -6px); }
+  20%, 60% { transform: translate(5px, 8px); }
+  40%, 80% { transform: translate(-6px, -7px); }
+}
+
+/* ---- the open binder ------------------------------------------------------------ */
+
+#binder, #zoom { position: fixed; inset: 0; display: none; }
+#binder { z-index: 40; }
+#zoom { z-index: 50; }
+#binder.on, #zoom.on { display: block; }
+/* Closing: the controls go at once, the dark fades as the binder travels back to its corner. */
+#binder.leaving .book-nav, #binder.leaving .book-close, #binder.leaving .book-page, #binder.leaving .book-tip { display: none; }
+#binder.leaving.going .binder-shade { opacity: 0; transition: opacity 0.32s; }
+
+.binder-shade { position: absolute; inset: 0; background: rgba(3, 8, 10, 0.82); animation: fade 0.3s; }
+@keyframes fade { from { opacity: 0; } }
+
+.book {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--pw) * 2);
+  height: var(--ph);
+  margin: calc(var(--ph) * -0.5) 0 0 calc(var(--pw) * -1);
+  perspective: 2800px;
+  transition: transform 0.7s cubic-bezier(0.45, 0, 0.2, 1);
+}
+.book.closed { transform: translateX(calc(var(--pw) * -0.5)); }
+.page, .leaf { position: absolute; top: 0; width: 50%; height: 100%; }
+.page.left, .leaf.from-left { left: 0; }
+.page.right, .leaf.from-right { left: 50%; }
+.leaf { z-index: 5; transform-style: preserve-3d; }
+.leaf.from-right { transform-origin: 0 50%; }
+.leaf.from-left { transform-origin: 100% 50%; }
+.leaf-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.leaf-back { transform: rotateY(180deg); }
+
+.side { position: absolute; inset: 0; overflow: hidden; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55); }
+.page.right .side, .from-right .leaf-front .side, .from-left .leaf-back .side { border-radius: 3px 16px 16px 3px; }
+.page.left .side, .from-right .leaf-back .side, .from-left .leaf-front .side { border-radius: 16px 3px 3px 16px; }
+/* The shadow that falls into the gutter between the two pages. */
+.side::after { content: ''; position: absolute; inset: 0; pointer-events: none; }
+.page.right .side::after, .from-right .leaf-front .side::after, .from-left .leaf-back .side::after { background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent 9%); }
+.page.left .side::after, .from-right .leaf-back .side::after, .from-left .leaf-front .side::after { background: linear-gradient(-90deg, rgba(0, 0, 0, 0.5), transparent 9%); }
+
+.cover-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+.inside { background: radial-gradient(ellipse at 50% 40%, #1d4a3a, #0f2a21); }
+.info { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.2%; padding: 6% 9%; text-align: center; color: #e6f2e8; }
+.info img { width: 60%; }
+.info-done { font-family: 'Lilita One', sans-serif; font-size: clamp(16px, 2.3vw, 27px); color: #ffd84a; text-shadow: 0 2px 0 #7a4500, 0 0 16px rgba(255, 200, 60, 0.7); }
+.info.complete { background: radial-gradient(ellipse at 50% 35%, #4a4416, #1a2a12); }
+.trade {
+  margin-top: 3%;
+  padding: 8px 20px 10px;
+  border: 3px solid #7a3d00;
+  border-radius: 999px;
+  background: linear-gradient(#ffe57a, #f59a1b);
+  color: #4a2500;
+  font-family: 'Lilita One', sans-serif;
+  font-size: clamp(13px, 1.6vw, 18px);
+  box-shadow: 0 4px 0 #7a3d00;
+  cursor: pointer;
+}
+.trade:active { transform: translateY(3px); box-shadow: 0 1px 0 #7a3d00; }
+/* The same offer at the top of the table, while waiting for a pack to be picked. */
+#trade-top {
+  position: fixed;
+  z-index: 12;
+  left: 50%;
+  top: 3vh;
+  margin: 0;
+  font-size: clamp(15px, 1.9vw, 21px);
+  white-space: nowrap;
+  box-shadow: 0 4px 0 #7a3d00, 0 10px 20px rgba(0, 0, 0, 0.45);
+  transform: translate(-50%, -160%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.35s cubic-bezier(0.2, 1.3, 0.4, 1);
+}
+#trade-top.on { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
+#trade-top.on:active { transform: translate(-50%, 3px); }
+.info-count { font-family: 'Lilita One', sans-serif; font-size: clamp(16px, 2.2vw, 26px); }
+.info-count b { font-size: 1.9em; color: #ffd84a; }
+.info-bar { width: 80%; height: 12px; border-radius: 9px; background: rgba(0, 0, 0, 0.4); overflow: hidden; }
+.info-packs { font-size: clamp(11px, 1.3vw, 14px); font-weight: 500; opacity: 0.7; margin-top: -1%; }
+.info-bar i { display: block; height: 100%; border-radius: 9px; background: linear-gradient(90deg, #ffd84a, #ff8a3d); }
+.info ul { width: 88%; margin: 3% 0 0; padding: 0; list-style: none; font-size: clamp(12px, 1.5vw, 17px); font-weight: 500; }
+.info li { display: flex; align-items: center; gap: 8px; padding: 3px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.12); text-align: left; }
+.info li .stars { width: 3.4em; font-size: 1em; color: #dfe7ea; }
+.info li .s-secret, .info li .s-gold { color: #ffd84a; }
+.info li span:nth-child(2) { flex: 1; }
+.info li em { font-style: normal; opacity: 0.8; }
+.reset {
+  position: relative;
+  overflow: hidden;
+  margin-top: 2%;
+  padding: 7px 18px 8px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.3);
+  font-weight: 500;
+  font-size: clamp(12px, 1.4vw, 15px);
+  color: #e6f2e8;
+  cursor: pointer;
+  touch-action: none;
+}
+/* The bar that fills while the button is held, and drops back at once if it is let go. */
+.reset i { position: absolute; inset: 0; width: 0; background: #c8372d; transition: width 0.2s; }
+.reset.holding i { width: 100%; transition: width var(--hold) linear; }
+.reset span { position: relative; }
+
+.sheet {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+  gap: 3%;
+  padding: 5% 6%;
+  background: linear-gradient(160deg, #1a2026, #0d1114);
+}
+.slot { position: relative; display: grid; place-items: center; min-width: 0; min-height: 0; cursor: pointer; }
+.pocket { position: relative; width: 100%; max-height: 100%; aspect-ratio: 63 / 88; }
+.pocket .card { width: 100%; }
+/* The clear plastic sleeve over each card. */
+.pocket::after {
+  content: '';
+  position: absolute;
+  inset: -2.5%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6%;
+  background: linear-gradient(125deg, rgba(255, 255, 255, 0.2), transparent 28%, transparent 72%, rgba(255, 255, 255, 0.08));
+  pointer-events: none;
+}
+.missing {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 6px;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 5%;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.28);
+  font-family: 'Lilita One', sans-serif;
+}
+.missing b { font-size: clamp(20px, 3.4vw, 44px); font-weight: 400; }
+.count {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 1%;
+  padding: 1px 10px 2px;
+  border-radius: 99px;
+  background: #ffd84a;
+  color: #4a2500;
+  font-family: 'Lilita One', sans-serif;
+  font-size: clamp(13px, 1.6vw, 19px);
+  box-shadow: 0 3px 0 #a36a00;
+}
+
+.book-nav, .book-close, .zoom-btn { position: absolute; z-index: 6; }
+/* The page-turn buttons sit right against the binder, are big, and can be hit from well outside their edge. */
+.book-nav { width: 68px; height: 68px; top: calc(50% - 34px); }
+.book-nav::before { content: ''; position: absolute; inset: -24px; border-radius: 50%; }
+.book-prev { left: max(6px, calc(50% - var(--pw) - 80px)); }
+.book-next { right: max(6px, calc(50% - var(--pw) - 80px)); }
+.book-close, .zoom-close { top: 2vh; right: 1.5vw; }
+.book-nav[hidden] { display: none; }
+.book-nav svg { display: block; width: 34px; height: 34px; fill: none; stroke: #fff; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+.book-page { position: absolute; left: 0; right: 0; bottom: 2vh; text-align: center; font-weight: 500; opacity: 0.7; }
+
+/* ---- the cards gained in a trade ------------------------------------------------- */
+
+#gained {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3.2vh;
+  /* Solid, so the covers over the waiting cards match it exactly. */
+  background: #04090b;
+  animation: fade 0.3s;
+}
+#gained.on { display: flex; }
+#gained h2 {
+  margin: 0;
+  font-family: 'Lilita One', sans-serif;
+  font-weight: 400;
+  font-size: clamp(26px, 4.4vw, 50px);
+  color: #ffd84a;
+  text-shadow: 0 3px 0 #7a4500, 0 0 22px rgba(255, 200, 60, 0.6);
+}
+/* Rows of five; a shorter last row sits in the middle. */
+.gained-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--gap); width: calc(var(--w) * var(--cols) + var(--gap) * (var(--cols) - 1)); }
+/* Each card waits in its slot under a cover the colour of the screen, already drawn. When the screen
+   says go (see trade.ts) the covers fade away one after another (--deal) while each card rises a little
+   into place: a rise and a fade, nothing bouncy.
+   It is done with a cover, not by fading the card itself, because a foil card is expensive to redraw:
+   fading it would redraw it on every frame, and a card kept invisible is not drawn at all until it
+   appears, either of which makes the cards pop in late instead of easing in. For the same reason the
+   foil does not shimmer here: as in the binder, each card's light is frozen at its own frame.
+   (The #gained in front keeps these ahead of the general shimmer rule in card.css.) */
+.gained-slot { position: relative; width: var(--w); }
+.gained-slot .card { width: 100%; transform: translateY(26px) scale(0.94); }
+/* The cover reaches further down than the slot, because the waiting card sits a little low and would show beneath it. */
+.gained-slot::after { content: ''; position: absolute; inset: -3% -3% -40px; z-index: 2; border-radius: 6%; background: #04090b; pointer-events: none; }
+#gained .card.shine:not(.manual):not(.fin-matte) { animation: shimmer 5.5s ease-in-out var(--delay, 0s) infinite paused; }
+#gained.go .gained-slot .card { transform: none; animation: rise 0.42s cubic-bezier(0.2, 0.8, 0.3, 1) var(--deal, 0s) backwards; }
+#gained.go .gained-slot .card.shine:not(.manual):not(.fin-matte) {
+  animation: rise 0.42s cubic-bezier(0.2, 0.8, 0.3, 1) var(--deal, 0s) backwards, shimmer 5.5s ease-in-out var(--delay, 0s) infinite paused;
+}
+#gained.go .gained-slot::after { opacity: 0; animation: uncover 0.42s ease-out var(--deal, 0s) backwards; }
+@keyframes rise { from { transform: translateY(26px) scale(0.94); } }
+@keyframes uncover { from { opacity: 1; } }
+#gained .trade { opacity: 0; }
+#gained.go .trade { opacity: 1; animation: dealt 0.5s cubic-bezier(0.2, 0.8, 0.3, 1) var(--after, 1s) backwards; }
+@keyframes dealt { from { opacity: 0; transform: translateY(26px) scale(0.94); } }
+#gained h2 { animation: dealt 0.5s cubic-bezier(0.2, 0.8, 0.3, 1) 0.05s backwards; }
+#gained .trade { margin: 0; font-size: clamp(18px, 2.4vw, 26px); padding: 10px 34px 12px; }
+
+/* ---- looking at one card -------------------------------------------------------- */
+
+.zoom-shade { position: absolute; inset: 0; background: #000; opacity: 0; transition: opacity 0.45s; }
+#zoom.dark .zoom-shade { opacity: 0.95; }
+.card.zoomed { position: fixed; left: 0; top: 0; z-index: 3; cursor: grab; touch-action: none; }
+.zoom-btn, .zoom-rotate { opacity: 0; transition: opacity 0.3s; }
+#zoom.dark .zoom-btn, #zoom.dark .zoom-rotate { opacity: 1; }
+/* The cards before and after the one in the middle: turned away to each side, dimmed, and tappable. */
+.card.zoomed.side { z-index: 1; cursor: pointer; filter: brightness(0.34); }
+#zoom:not(.dark) .card.zoomed.side { opacity: 0; }
+.zoom-rotate {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  bottom: 2vh;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+}
+.zoom-rotate i { width: 42px; height: 42px; padding: 0; }
+.zoom-rotate svg { width: 24px; fill: #fff; }
+.zoom-rotate:active i { background: rgba(255, 255, 255, 0.25); }

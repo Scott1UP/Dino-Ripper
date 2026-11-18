@@ -1,0 +1,2731 @@
+[
+ {
+  "id": "baby-rex",
+  "name": "Baby T. Rex",
+  "rarity": "common",
+  "type": "fire",
+  "artist": "mabel",
+  "power": 50,
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "1 m long",
+  "moves": [
+   {
+    "name": "Tiny Roar",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Nibble",
+    "cost": 2,
+    "dmg": 30
+   }
+  ],
+  "fact": "A baby T. rex was fluffy, and about the size of a turkey when it hatched.",
+  "scene": "A baby Tyrannosaurus rex standing next to a volcano, roaring, with tiny arms.",
+  "no": 1,
+  "artistName": "Mabel, age 6"
+ },
+ {
+  "id": "baby-spino",
+  "name": "Baby Spinosaurus",
+  "rarity": "common",
+  "type": "water",
+  "artist": "toon",
+  "power": 50,
+  "era": "Cretaceous",
+  "diet": "Fish-eater",
+  "size": "1.5 m long",
+  "moves": [
+   {
+    "name": "Splash",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Fish Snap",
+    "cost": 2,
+    "dmg": 30
+   }
+  ],
+  "fact": "Even a young Spinosaurus had a little sail, and could paddle after fish.",
+  "scene": "A baby Spinosaurus with a small sail on its back, sitting in a shallow pond and proudly holding up one tiny fish in its mouth, facing the viewer.",
+  "no": 2,
+  "artistName": "Sunny Hollis"
+ },
+ {
+  "id": "baby-trike",
+  "name": "Baby Triceratops",
+  "rarity": "common",
+  "type": "leaf",
+  "artist": "clay",
+  "power": 50,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "1 m long",
+  "moves": [
+   {
+    "name": "Head Bump",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Frill Wiggle",
+    "cost": 2,
+    "dmg": 20
+   }
+  ],
+  "fact": "A baby Triceratops had three tiny stubs where its horns would grow.",
+  "scene": "A baby Triceratops with a frill and three stubby horns, sitting on its bottom and facing the viewer, hatching from a big cracked egg.",
+  "no": 3,
+  "artistName": "Dot Morrow"
+ },
+ {
+  "id": "baby-raptor",
+  "name": "Baby Velociraptor",
+  "rarity": "common",
+  "type": "storm",
+  "artist": "biro",
+  "power": 40,
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "50 cm long",
+  "moves": [
+   {
+    "name": "Pounce",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Tiny Claws",
+    "cost": 2,
+    "dmg": 30
+   }
+  ],
+  "fact": "Baby raptors were covered in soft feathers, like a chick.",
+  "scene": "A fluffy feathered baby Velociraptor mid-pounce onto a beetle, seen from the side, leaping towards the LEFT.",
+  "no": 4,
+  "artistName": "Ben, Class 4B"
+ },
+ {
+  "id": "baby-brachio",
+  "name": "Baby Brachiosaurus",
+  "rarity": "common",
+  "type": "leaf",
+  "artist": "felt",
+  "power": 60,
+  "era": "Jurassic",
+  "diet": "Plant-eater",
+  "size": "2 m long",
+  "moves": [
+   {
+    "name": "Neck Stretch",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Leaf Munch",
+    "cost": 2,
+    "dmg": 30
+   }
+  ],
+  "fact": "It hatched from an egg the size of a football, and grew taller than a house.",
+  "scene": "A baby Brachiosaurus with a long neck, stretching up on tiptoe to reach a single leaf just out of reach, seen from the side, facing right.",
+  "no": 5,
+  "artistName": "Nana Stitch"
+ },
+ {
+  "id": "baby-anky",
+  "name": "Baby Ankylosaurus",
+  "rarity": "common",
+  "type": "rock",
+  "artist": "clay",
+  "power": 50,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "1 m long",
+  "moves": [
+   {
+    "name": "Curl Up",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Tail Tap",
+    "cost": 2,
+    "dmg": 20
+   }
+  ],
+  "fact": "Its armour started soft and grew harder as it got older.",
+  "scene": "A baby Ankylosaurus with bumpy armour and a tiny tail club, curled into a ball, peeking out with one eye, seen from above.",
+  "no": 6,
+  "artistName": "Dot Morrow"
+ },
+ {
+  "id": "baby-giga",
+  "name": "Baby Giganotosaurus",
+  "rarity": "common",
+  "type": "fire",
+  "artist": "mabel",
+  "power": 50,
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "1 m long",
+  "moves": [
+   {
+    "name": "Stomp",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Little Chomp",
+    "cost": 2,
+    "dmg": 30
+   }
+  ],
+  "fact": "One day it would be even longer than a T. rex.",
+  "scene": "A baby Giganotosaurus with a very big head, chasing a butterfly, running towards the LEFT.",
+  "no": 7,
+  "artistName": "Mabel, age 6"
+ },
+ {
+  "id": "baby-stego",
+  "name": "Baby Stegosaurus",
+  "rarity": "common",
+  "type": "leaf",
+  "artist": "kawaii",
+  "power": 50,
+  "era": "Jurassic",
+  "diet": "Plant-eater",
+  "size": "1 m long",
+  "moves": [
+   {
+    "name": "Snooze",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Plate Shake",
+    "cost": 2,
+    "dmg": 20
+   }
+  ],
+  "fact": "Its back plates were tiny at first and grew as it did.",
+  "scene": "A baby Stegosaurus with a row of little back plates and a spiky tail, curled up asleep.",
+  "no": 8,
+  "artistName": "Momo Chi"
+ },
+ {
+  "id": "baby-allo",
+  "name": "Baby Allosaurus",
+  "rarity": "common",
+  "type": "fire",
+  "artist": "kawaii",
+  "power": 50,
+  "era": "Jurassic",
+  "diet": "Meat-eater",
+  "size": "1 m long",
+  "moves": [
+   {
+    "name": "Yawn",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Snap",
+    "cost": 2,
+    "dmg": 30
+   }
+  ],
+  "fact": "Young Allosaurus had long legs for their size and were quick runners.",
+  "scene": "A baby Allosaurus with two small bumps above its eyes, sitting up with a huge yawn, facing the viewer.",
+  "no": 9,
+  "artistName": "Momo Chi"
+ },
+ {
+  "id": "baby-carno",
+  "name": "Baby Carnotaurus",
+  "rarity": "common",
+  "type": "fire",
+  "artist": "collage",
+  "power": 50,
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "1 m long",
+  "moves": [
+   {
+    "name": "Horn Poke",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Dash",
+    "cost": 2,
+    "dmg": 30
+   }
+  ],
+  "fact": "Carnotaurus means \"meat-eating bull\", because of its two horns.",
+  "scene": "A baby Carnotaurus with two tiny bull horns and very tiny arms, running fast towards the right, seen from the side.",
+  "no": 10,
+  "artistName": "Otto Papier"
+ },
+ {
+  "id": "compy",
+  "name": "Compsognathus",
+  "rarity": "common",
+  "type": "leaf",
+  "artist": "crayon",
+  "power": 40,
+  "era": "Jurassic",
+  "diet": "Meat-eater",
+  "size": "1 m long",
+  "moves": [
+   {
+    "name": "Quick Nip",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Zoom Dash",
+    "cost": 2,
+    "dmg": 30
+   }
+  ],
+  "fact": "About the size of a chicken, and one of the fastest little hunters of its time.",
+  "scene": "A small green Compsognathus chasing a dragonfly between ferns.",
+  "no": 11,
+  "artistName": "Pip Scribble"
+ },
+ {
+  "id": "para",
+  "name": "Parasaurolophus",
+  "rarity": "common",
+  "type": "water",
+  "artist": "crayon",
+  "power": 70,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "9 m long",
+  "moves": [
+   {
+    "name": "Crest Honk",
+    "cost": 1,
+    "dmg": 20
+   },
+   {
+    "name": "Herd Rush",
+    "cost": 2,
+    "dmg": 40
+   }
+  ],
+  "fact": "Its hollow crest worked like a trumpet, so it could call to its herd from far away.",
+  "scene": "Two Parasaurolophus at the edge of a lake, one drinking and one calling.",
+  "no": 12,
+  "artistName": "Pip Scribble"
+ },
+ {
+  "id": "pachy",
+  "name": "Pachycephalosaurus",
+  "rarity": "common",
+  "type": "rock",
+  "artist": "crayon",
+  "power": 60,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "4.5 m long",
+  "moves": [
+   {
+    "name": "Head Bonk",
+    "cost": 1,
+    "dmg": 20
+   },
+   {
+    "name": "Dome Charge",
+    "cost": 3,
+    "dmg": 50
+   }
+  ],
+  "fact": "The bone on top of its head was 25 cm thick. That is thicker than a brick!",
+  "scene": "A Pachycephalosaurus charging head-on down a rocky hillside.",
+  "no": 13,
+  "artistName": "Pip Scribble"
+ },
+ {
+  "id": "galli",
+  "name": "Gallimimus",
+  "rarity": "common",
+  "type": "storm",
+  "artist": "toon",
+  "power": 50,
+  "era": "Cretaceous",
+  "diet": "Eats anything",
+  "size": "6 m long",
+  "moves": [
+   {
+    "name": "Sprint",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Flock Dash",
+    "cost": 2,
+    "dmg": 30
+   }
+  ],
+  "fact": "It looked like a giant ostrich and could run as fast as a racehorse.",
+  "scene": "An ostrich-like Gallimimus with a long neck sprinting flat out towards the right, legs a blur, looking back over its shoulder in a panic.",
+  "no": 14,
+  "artistName": "Sunny Hollis"
+ },
+ {
+  "id": "micro",
+  "name": "Microraptor",
+  "rarity": "common",
+  "type": "sky",
+  "artist": "origami",
+  "power": 40,
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "80 cm long",
+  "moves": [
+   {
+    "name": "Glide",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Four-Wing Dive",
+    "cost": 2,
+    "dmg": 30
+   }
+  ],
+  "fact": "It had four wings: feathers on its arms and on its legs.",
+  "scene": "A small four-winged Microraptor gliding with all four feathered wings spread, seen from above.",
+  "no": 15,
+  "artistName": "Ori Fold"
+ },
+ {
+  "id": "proto",
+  "name": "Protoceratops",
+  "rarity": "common",
+  "type": "rock",
+  "artist": "felt",
+  "power": 50,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "2 m long",
+  "moves": [
+   {
+    "name": "Beak Peck",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Nest Guard",
+    "cost": 2,
+    "dmg": 30
+   }
+  ],
+  "fact": "About the size of a sheep. Whole nests of its babies have been found.",
+  "scene": "A small Protoceratops with a neck frill and a beak, standing guard over a nest of round eggs, facing the viewer.",
+  "no": 16,
+  "artistName": "Nana Stitch"
+ },
+ {
+  "id": "psitta",
+  "name": "Psittacosaurus",
+  "rarity": "common",
+  "type": "leaf",
+  "artist": "shapes",
+  "power": 40,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "2 m long",
+  "moves": [
+   {
+    "name": "Parrot Peck",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Bristle Flick",
+    "cost": 2,
+    "dmg": 20
+   }
+  ],
+  "fact": "Its name means \"parrot lizard\", because of its parrot-like beak.",
+  "scene": "A Psittacosaurus with a parrot beak and a row of bristles on its tail, seen from the side, facing LEFT, nibbling a seed pod.",
+  "no": 17,
+  "artistName": "Bruno Kube"
+ },
+ {
+  "id": "hypsi",
+  "name": "Hypsilophodon",
+  "rarity": "common",
+  "type": "leaf",
+  "artist": "chalk",
+  "power": 40,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "2 m long",
+  "moves": [
+   {
+    "name": "Dodge",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Zigzag Run",
+    "cost": 2,
+    "dmg": 20
+   }
+  ],
+  "fact": "Small and speedy, it escaped danger by zigzagging away.",
+  "scene": "Three small Hypsilophodons running in a zigzag line away into the distance, seen from behind.",
+  "no": 18,
+  "artistName": "Miss Tavish"
+ },
+ {
+  "id": "coelo",
+  "name": "Coelophysis",
+  "rarity": "common",
+  "type": "storm",
+  "artist": "lino",
+  "power": 50,
+  "era": "Triassic",
+  "diet": "Meat-eater",
+  "size": "3 m long",
+  "moves": [
+   {
+    "name": "Snap",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Pack Hunt",
+    "cost": 2,
+    "dmg": 30
+   }
+  ],
+  "fact": "One of the earliest dinosaurs, light and quick, with hollow bones.",
+  "scene": "A slender Coelophysis with a long neck and tail, twisting round in an S shape to snap at a lizard, facing LEFT.",
+  "no": 19,
+  "artistName": "Ines Block"
+ },
+ {
+  "id": "ovi",
+  "name": "Oviraptor",
+  "rarity": "common",
+  "type": "storm",
+  "artist": "felt",
+  "power": 50,
+  "era": "Cretaceous",
+  "diet": "Eats anything",
+  "size": "2 m long",
+  "moves": [
+   {
+    "name": "Egg Hug",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Crest Bash",
+    "cost": 2,
+    "dmg": 30
+   }
+  ],
+  "fact": "It sat on its nest to keep its eggs warm, just like a bird.",
+  "scene": "An Oviraptor with a head crest and feathered arms, sitting on a nest with its wings wrapped around the eggs, seen from the front.",
+  "no": 20,
+  "artistName": "Nana Stitch"
+ },
+ {
+  "id": "troodon",
+  "name": "Troodon",
+  "rarity": "common",
+  "type": "storm",
+  "artist": "neon",
+  "power": 50,
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "2.5 m long",
+  "moves": [
+   {
+    "name": "Night Eyes",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Clever Trap",
+    "cost": 2,
+    "dmg": 30
+   }
+  ],
+  "fact": "It had big eyes for seeing in the dark, and a large brain for a dinosaur.",
+  "scene": "A Troodon with enormous round eyes, creeping through the night on tiptoe towards the right, looking sideways at the viewer.",
+  "no": 21,
+  "artistName": "Vega"
+ },
+ {
+  "id": "dryo",
+  "name": "Dryosaurus",
+  "rarity": "common",
+  "type": "leaf",
+  "artist": "watercolour",
+  "power": 40,
+  "era": "Jurassic",
+  "diet": "Plant-eater",
+  "size": "3 m long",
+  "moves": [
+   {
+    "name": "Leaf Nibble",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Quick Step",
+    "cost": 2,
+    "dmg": 20
+   }
+  ],
+  "fact": "Its name means \"tree lizard\", because it lived in forests.",
+  "scene": "A Dryosaurus standing on its back legs among tall tree trunks, reaching up to nibble a low branch, seen from behind.",
+  "no": 22,
+  "artistName": "Wren Loch"
+ },
+ {
+  "id": "leaelly",
+  "name": "Leaellynasaura",
+  "rarity": "common",
+  "type": "leaf",
+  "artist": "kawaii",
+  "power": 40,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "1 m long",
+  "moves": [
+   {
+    "name": "Snuggle",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Snow Hop",
+    "cost": 2,
+    "dmg": 20
+   }
+  ],
+  "fact": "It lived near the South Pole and had a very long tail to wrap up in.",
+  "scene": "A small Leaellynasaura with a very long fluffy tail wrapped around itself like a scarf, sitting in falling snow.",
+  "no": 23,
+  "artistName": "Momo Chi"
+ },
+ {
+  "id": "maia",
+  "name": "Maiasaura",
+  "rarity": "common",
+  "type": "leaf",
+  "artist": "clay",
+  "power": 60,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "9 m long",
+  "moves": [
+   {
+    "name": "Lullaby",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Herd Shield",
+    "cost": 2,
+    "dmg": 30
+   }
+  ],
+  "fact": "Its name means \"good mother lizard\". It fed its babies in the nest.",
+  "scene": "A mother Maiasaura bending her head down into a round mud nest full of tiny babies, seen from above.",
+  "no": 24,
+  "artistName": "Dot Morrow"
+ },
+ {
+  "id": "sino",
+  "name": "Sinosauropteryx",
+  "rarity": "common",
+  "type": "storm",
+  "artist": "ink",
+  "power": 40,
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "1 m long",
+  "moves": [
+   {
+    "name": "Tail Flick",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Stripe Dash",
+    "cost": 2,
+    "dmg": 20
+   }
+  ],
+  "fact": "The first dinosaur found with feathers. Its tail had ginger and white stripes.",
+  "scene": "A small fuzzy Sinosauropteryx with a long stripy tail held straight up, trotting towards the LEFT.",
+  "no": 25,
+  "artistName": "Kaze"
+ },
+ {
+  "id": "archaeo",
+  "name": "Archaeopteryx",
+  "rarity": "common",
+  "type": "sky",
+  "artist": "glass",
+  "power": 40,
+  "era": "Jurassic",
+  "diet": "Bug-eater",
+  "size": "50 cm long",
+  "moves": [
+   {
+    "name": "Flap",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Feather Glide",
+    "cost": 2,
+    "dmg": 20
+   }
+  ],
+  "fact": "Part dinosaur, part bird: it had wings and feathers, but teeth and claws too.",
+  "scene": "An Archaeopteryx with wings spread wide, perched on a branch, seen from the front.",
+  "no": 26,
+  "artistName": "Vitra Lux"
+ },
+ {
+  "id": "dimorph",
+  "name": "Dimorphodon",
+  "rarity": "common",
+  "type": "sky",
+  "artist": "cave",
+  "power": 40,
+  "era": "Jurassic",
+  "diet": "Bug-eater",
+  "size": "1.5 m wings",
+  "moves": [
+   {
+    "name": "Bug Snap",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Swoop",
+    "cost": 2,
+    "dmg": 20
+   }
+  ],
+  "fact": "A flying reptile with a big puffin-like head and two kinds of teeth.",
+  "scene": "Two Dimorphodons with big heads and long tails flying in a circle around each other.",
+  "no": 27,
+  "artistName": "Og"
+ },
+ {
+  "id": "ptero",
+  "name": "Pterodactylus",
+  "rarity": "common",
+  "type": "sky",
+  "artist": "origami",
+  "power": 40,
+  "era": "Jurassic",
+  "diet": "Fish-eater",
+  "size": "1 m wings",
+  "moves": [
+   {
+    "name": "Skim",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Beak Jab",
+    "cost": 2,
+    "dmg": 20
+   }
+  ],
+  "fact": "The first flying reptile ever discovered, about the size of a seagull.",
+  "scene": "A Pterodactylus hanging upside down from a branch like a bat, wings folded, looking at the viewer.",
+  "no": 28,
+  "artistName": "Ori Fold"
+ },
+ {
+  "id": "ichthyo",
+  "name": "Ichthyosaurus",
+  "rarity": "common",
+  "type": "water",
+  "artist": "pixel",
+  "power": 50,
+  "era": "Jurassic",
+  "diet": "Fish-eater",
+  "size": "2 m long",
+  "moves": [
+   {
+    "name": "Wave Leap",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Speed Swim",
+    "cost": 2,
+    "dmg": 30
+   }
+  ],
+  "fact": "A sea reptile shaped like a dolphin, with huge eyes for seeing in deep water.",
+  "scene": "A dolphin-shaped Ichthyosaurus leaping right out of the sea in an arc, seen from the side, heading LEFT.",
+  "no": 29,
+  "artistName": "Bea Bitmap"
+ },
+ {
+  "id": "mussa",
+  "name": "Mussaurus",
+  "rarity": "common",
+  "type": "leaf",
+  "artist": "mabel",
+  "power": 30,
+  "era": "Triassic",
+  "diet": "Plant-eater",
+  "size": "3 m long",
+  "moves": [
+   {
+    "name": "Squeak",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Scurry",
+    "cost": 2,
+    "dmg": 20
+   }
+  ],
+  "fact": "Its name means \"mouse lizard\", because its babies were tiny enough to fit in your hand.",
+  "scene": "A tiny Mussaurus standing in a giant human hand.",
+  "no": 30,
+  "artistName": "Mabel, age 6"
+ },
+ {
+  "id": "minmi",
+  "name": "Minmi",
+  "rarity": "common",
+  "type": "rock",
+  "artist": "toon",
+  "power": 50,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "3 m long",
+  "moves": [
+   {
+    "name": "Hunker",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Armour Roll",
+    "cost": 2,
+    "dmg": 20
+   }
+  ],
+  "fact": "A small armoured dinosaur from Australia, with armour even on its tummy.",
+  "scene": "A small round armoured Minmi lying flat on the ground hiding, with only its eyes peeking up, seen from the front.",
+  "no": 31,
+  "artistName": "Sunny Hollis"
+ },
+ {
+  "id": "hetero",
+  "name": "Heterodontosaurus",
+  "rarity": "common",
+  "type": "leaf",
+  "artist": "biro",
+  "power": 40,
+  "era": "Jurassic",
+  "diet": "Eats anything",
+  "size": "1 m long",
+  "moves": [
+   {
+    "name": "Tusk Nip",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Bristle Rush",
+    "cost": 2,
+    "dmg": 20
+   }
+  ],
+  "fact": "It had three kinds of teeth, including little tusks.",
+  "scene": "A small Heterodontosaurus with two tiny tusks, rearing up and showing its teeth, seen from the front.",
+  "no": 32,
+  "artistName": "Ben, Class 4B"
+ },
+ {
+  "id": "eo",
+  "name": "Eoraptor",
+  "rarity": "common",
+  "type": "storm",
+  "artist": "shapes",
+  "power": 40,
+  "era": "Triassic",
+  "diet": "Eats anything",
+  "size": "1 m long",
+  "moves": [
+   {
+    "name": "First Step",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Dawn Dash",
+    "cost": 2,
+    "dmg": 20
+   }
+  ],
+  "fact": "One of the very first dinosaurs of all. Its name means \"dawn thief\".",
+  "scene": "A small Eoraptor running towards the right in front of a huge rising sun.",
+  "no": 33,
+  "artistName": "Bruno Kube"
+ },
+ {
+  "id": "herrera",
+  "name": "Herrerasaurus",
+  "rarity": "common",
+  "type": "fire",
+  "artist": "lino",
+  "power": 60,
+  "era": "Triassic",
+  "diet": "Meat-eater",
+  "size": "4 m long",
+  "moves": [
+   {
+    "name": "Lunge",
+    "cost": 1,
+    "dmg": 20
+   },
+   {
+    "name": "Ambush",
+    "cost": 2,
+    "dmg": 40
+   }
+  ],
+  "fact": "One of the earliest big hunters, from before the giants appeared.",
+  "scene": "A Herrerasaurus crouched low among horsetail plants, about to spring, seen from the front.",
+  "no": 34,
+  "artistName": "Ines Block"
+ },
+ {
+  "id": "lesotho",
+  "name": "Lesothosaurus",
+  "rarity": "common",
+  "type": "leaf",
+  "artist": "chalk",
+  "power": 30,
+  "era": "Jurassic",
+  "diet": "Plant-eater",
+  "size": "1 m long",
+  "moves": [
+   {
+    "name": "Hop",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Quick Nibble",
+    "cost": 2,
+    "dmg": 20
+   }
+  ],
+  "fact": "A tiny, fast plant-eater, no bigger than a cat.",
+  "scene": "A tiny Lesothosaurus hopping over a log, seen from the side, heading LEFT.",
+  "no": 35,
+  "artistName": "Miss Tavish"
+ },
+ {
+  "id": "struthio",
+  "name": "Struthiomimus",
+  "rarity": "common",
+  "type": "storm",
+  "artist": "swirl",
+  "power": 50,
+  "era": "Cretaceous",
+  "diet": "Eats anything",
+  "size": "4 m long",
+  "moves": [
+   {
+    "name": "Long Stride",
+    "cost": 1,
+    "dmg": 10
+   },
+   {
+    "name": "Whirl",
+    "cost": 2,
+    "dmg": 30
+   }
+  ],
+  "fact": "Its name means \"ostrich mimic\". It had no teeth at all.",
+  "scene": "A long-legged Struthiomimus spinning round on one foot like a dancer.",
+  "no": 36,
+  "artistName": "Flora Swirl"
+ },
+ {
+  "id": "iguano",
+  "name": "Iguanodon",
+  "rarity": "uncommon",
+  "type": "leaf",
+  "artist": "cave",
+  "power": 90,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "10 m long",
+  "moves": [
+   {
+    "name": "Thumb Spike",
+    "cost": 1,
+    "dmg": 20
+   },
+   {
+    "name": "Herd March",
+    "cost": 3,
+    "dmg": 60
+   }
+  ],
+  "fact": "It had a spike on each thumb. The first scientists thought the spike went on its nose!",
+  "scene": "A herd of three Iguanodons with thumb spikes, walking in a line towards the right.",
+  "no": 37,
+  "artistName": "Og"
+ },
+ {
+  "id": "dilo",
+  "name": "Dilophosaurus",
+  "rarity": "uncommon",
+  "type": "fire",
+  "artist": "biro",
+  "power": 90,
+  "era": "Jurassic",
+  "diet": "Meat-eater",
+  "size": "7 m long",
+  "moves": [
+   {
+    "name": "Crest Flash",
+    "cost": 1,
+    "dmg": 20
+   },
+   {
+    "name": "Hiss Strike",
+    "cost": 3,
+    "dmg": 60
+   }
+  ],
+  "fact": "It had two thin crests on its head, like a pair of half plates.",
+  "scene": "A Dilophosaurus with two crests on its head, rearing up and hissing, seen from below.",
+  "no": 38,
+  "artistName": "Ben, Class 4B"
+ },
+ {
+  "id": "cory",
+  "name": "Corythosaurus",
+  "rarity": "uncommon",
+  "type": "water",
+  "artist": "collage",
+  "power": 80,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "9 m long",
+  "moves": [
+   {
+    "name": "Helmet Honk",
+    "cost": 1,
+    "dmg": 20
+   },
+   {
+    "name": "Wade",
+    "cost": 2,
+    "dmg": 40
+   }
+  ],
+  "fact": "Its crest looked like a helmet, and helped it make deep booming calls.",
+  "scene": "A Corythosaurus with a helmet-shaped crest, wading through a lake up to its knees, facing LEFT.",
+  "no": 39,
+  "artistName": "Otto Papier"
+ },
+ {
+  "id": "edmonto",
+  "name": "Edmontosaurus",
+  "rarity": "uncommon",
+  "type": "leaf",
+  "artist": "toon",
+  "power": 80,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "12 m long",
+  "moves": [
+   {
+    "name": "Duck Bill",
+    "cost": 1,
+    "dmg": 20
+   },
+   {
+    "name": "Big Chew",
+    "cost": 2,
+    "dmg": 40
+   }
+  ],
+  "fact": "A duck-billed dinosaur with more than a thousand teeth for grinding plants.",
+  "scene": "An Edmontosaurus with a wide duck bill and a mouth crammed full of leaves, cheeks bulging, facing the viewer.",
+  "no": 40,
+  "artistName": "Sunny Hollis"
+ },
+ {
+  "id": "styraco",
+  "name": "Styracosaurus",
+  "rarity": "uncommon",
+  "type": "rock",
+  "artist": "glass",
+  "power": 100,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "5.5 m long",
+  "moves": [
+   {
+    "name": "Spike Crown",
+    "cost": 2,
+    "dmg": 30
+   },
+   {
+    "name": "Nose Horn",
+    "cost": 3,
+    "dmg": 60
+   }
+  ],
+  "fact": "Its frill had a crown of long spikes, and its nose horn was as long as your arm.",
+  "scene": "A Styracosaurus with a crown of long spikes around its frill and one big nose horn, seen from the front.",
+  "no": 41,
+  "artistName": "Vitra Lux"
+ },
+ {
+  "id": "pachyrhino",
+  "name": "Pachyrhinosaurus",
+  "rarity": "uncommon",
+  "type": "rock",
+  "artist": "clay",
+  "power": 90,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "6 m long",
+  "moves": [
+   {
+    "name": "Nose Bump",
+    "cost": 1,
+    "dmg": 20
+   },
+   {
+    "name": "Snow Push",
+    "cost": 3,
+    "dmg": 50
+   }
+  ],
+  "fact": "Where other horned dinosaurs had a nose horn, it had a big flat lump of bone.",
+  "scene": "Two Pachyrhinosaurus with big bumpy noses pushing their heads together, seen from the side.",
+  "no": 42,
+  "artistName": "Dot Morrow"
+ },
+ {
+  "id": "kentro",
+  "name": "Kentrosaurus",
+  "rarity": "uncommon",
+  "type": "rock",
+  "artist": "lino",
+  "power": 90,
+  "era": "Jurassic",
+  "diet": "Plant-eater",
+  "size": "4.5 m long",
+  "moves": [
+   {
+    "name": "Shoulder Spike",
+    "cost": 2,
+    "dmg": 30
+   },
+   {
+    "name": "Spike Spin",
+    "cost": 3,
+    "dmg": 60
+   }
+  ],
+  "fact": "A cousin of Stegosaurus with long spikes all the way down its tail.",
+  "scene": "A Kentrosaurus covered in spikes from its hips to its tail, swinging its tail round, seen from behind.",
+  "no": 43,
+  "artistName": "Ines Block"
+ },
+ {
+  "id": "bary",
+  "name": "Baryonyx",
+  "rarity": "uncommon",
+  "type": "water",
+  "artist": "swirl",
+  "power": 100,
+  "era": "Cretaceous",
+  "diet": "Fish-eater",
+  "size": "9 m long",
+  "moves": [
+   {
+    "name": "Hook Claw",
+    "cost": 2,
+    "dmg": 30
+   },
+   {
+    "name": "River Grab",
+    "cost": 3,
+    "dmg": 60
+   }
+  ],
+  "fact": "It hooked fish out of rivers with a giant claw on each thumb.",
+  "scene": "A Baryonyx with a long crocodile snout standing in a river, flicking a fish up into the air with one big claw.",
+  "no": 44,
+  "artistName": "Flora Swirl"
+ },
+ {
+  "id": "deino",
+  "name": "Deinonychus",
+  "rarity": "uncommon",
+  "type": "storm",
+  "artist": "spray",
+  "power": 100,
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "3.5 m long",
+  "moves": [
+   {
+    "name": "Terrible Claw",
+    "cost": 2,
+    "dmg": 30
+   },
+   {
+    "name": "Leap Attack",
+    "cost": 3,
+    "dmg": 70
+   }
+  ],
+  "fact": "Its name means \"terrible claw\". It was the bigger cousin of Velociraptor.",
+  "scene": "A feathered Deinonychus in mid-air with both clawed feet stretched out in front, leaping towards the viewer.",
+  "no": 45,
+  "artistName": "Dax One"
+ },
+ {
+  "id": "cerato",
+  "name": "Ceratosaurus",
+  "rarity": "uncommon",
+  "type": "fire",
+  "artist": "neon",
+  "power": 100,
+  "era": "Jurassic",
+  "diet": "Meat-eater",
+  "size": "6 m long",
+  "moves": [
+   {
+    "name": "Nose Horn",
+    "cost": 2,
+    "dmg": 30
+   },
+   {
+    "name": "Jagged Bite",
+    "cost": 3,
+    "dmg": 60
+   }
+  ],
+  "fact": "A hunter with a horn on its nose and a row of bony bumps down its back.",
+  "scene": "A Ceratosaurus with a horn on its nose, in profile facing right, jaws open.",
+  "no": 46,
+  "artistName": "Vega"
+ },
+ {
+  "id": "plateo",
+  "name": "Plateosaurus",
+  "rarity": "uncommon",
+  "type": "leaf",
+  "artist": "watercolour",
+  "power": 80,
+  "era": "Triassic",
+  "diet": "Plant-eater",
+  "size": "8 m long",
+  "moves": [
+   {
+    "name": "Reach",
+    "cost": 1,
+    "dmg": 20
+   },
+   {
+    "name": "Tail Sweep",
+    "cost": 2,
+    "dmg": 40
+   }
+  ],
+  "fact": "One of the first big plant-eaters. It could stand up on its back legs to reach high.",
+  "scene": "A Plateosaurus standing tall on its back legs, pulling a branch down with its hands, seen from the side, facing LEFT.",
+  "no": 47,
+  "artistName": "Wren Loch"
+ },
+ {
+  "id": "apato",
+  "name": "Apatosaurus",
+  "rarity": "uncommon",
+  "type": "leaf",
+  "artist": "mabel",
+  "power": 100,
+  "era": "Jurassic",
+  "diet": "Plant-eater",
+  "size": "22 m long",
+  "moves": [
+   {
+    "name": "Stomp",
+    "cost": 2,
+    "dmg": 30
+   },
+   {
+    "name": "Tail Whip",
+    "cost": 3,
+    "dmg": 60
+   }
+  ],
+  "fact": "It could crack its tail like a whip, making a sound as loud as a cannon.",
+  "scene": "A huge Apatosaurus with a very long neck and a very long tail, next to a tiny tree and a tiny house.",
+  "no": 48,
+  "artistName": "Mabel, age 6"
+ },
+ {
+  "id": "bronto",
+  "name": "Brontosaurus",
+  "rarity": "uncommon",
+  "type": "leaf",
+  "artist": "felt",
+  "power": 100,
+  "era": "Jurassic",
+  "diet": "Plant-eater",
+  "size": "22 m long",
+  "moves": [
+   {
+    "name": "Thunder Step",
+    "cost": 2,
+    "dmg": 30
+   },
+   {
+    "name": "Long Reach",
+    "cost": 3,
+    "dmg": 50
+   }
+  ],
+  "fact": "Its name means \"thunder lizard\", for the sound of its footsteps.",
+  "scene": "A Brontosaurus walking towards the right across rolling hills, so long that it fills the whole picture.",
+  "no": 49,
+  "artistName": "Nana Stitch"
+ },
+ {
+  "id": "lambeo",
+  "name": "Lambeosaurus",
+  "rarity": "uncommon",
+  "type": "water",
+  "artist": "shapes",
+  "power": 80,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "9 m long",
+  "moves": [
+   {
+    "name": "Axe Crest",
+    "cost": 1,
+    "dmg": 20
+   },
+   {
+    "name": "Echo Call",
+    "cost": 2,
+    "dmg": 40
+   }
+  ],
+  "fact": "Its crest was shaped like an axe stuck in its head.",
+  "scene": "A Lambeosaurus with an axe-shaped crest, head raised and calling, in profile facing LEFT.",
+  "no": 50,
+  "artistName": "Bruno Kube"
+ },
+ {
+  "id": "ourano",
+  "name": "Ouranosaurus",
+  "rarity": "uncommon",
+  "type": "leaf",
+  "artist": "cave",
+  "power": 90,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "7 m long",
+  "moves": [
+   {
+    "name": "Sail Shade",
+    "cost": 1,
+    "dmg": 20
+   },
+   {
+    "name": "Desert March",
+    "cost": 3,
+    "dmg": 50
+   }
+  ],
+  "fact": "A plant-eater with a tall sail on its back, which lived in hot, dry places.",
+  "scene": "An Ouranosaurus with a tall sail along its back, walking towards the LEFT under a big sun.",
+  "no": 51,
+  "artistName": "Og"
+ },
+ {
+  "id": "amarga",
+  "name": "Amargasaurus",
+  "rarity": "uncommon",
+  "type": "leaf",
+  "artist": "origami",
+  "power": 90,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "10 m long",
+  "moves": [
+   {
+    "name": "Spine Rattle",
+    "cost": 2,
+    "dmg": 30
+   },
+   {
+    "name": "Neck Sweep",
+    "cost": 3,
+    "dmg": 50
+   }
+  ],
+  "fact": "It had two rows of tall spines along its neck, like a double mohawk.",
+  "scene": "An Amargasaurus with two rows of tall spines down its neck, seen from the front with its neck curved to one side.",
+  "no": 52,
+  "artistName": "Ori Fold"
+ },
+ {
+  "id": "sucho",
+  "name": "Suchomimus",
+  "rarity": "uncommon",
+  "type": "water",
+  "artist": "pixel",
+  "power": 100,
+  "era": "Cretaceous",
+  "diet": "Fish-eater",
+  "size": "11 m long",
+  "moves": [
+   {
+    "name": "Croc Snap",
+    "cost": 2,
+    "dmg": 30
+   },
+   {
+    "name": "Swamp Lunge",
+    "cost": 3,
+    "dmg": 60
+   }
+  ],
+  "fact": "Its name means \"crocodile mimic\", because of its long, narrow jaws.",
+  "scene": "A Suchomimus with a long narrow snout lunging out of a swamp at a leaping fish, heading LEFT.",
+  "no": 53,
+  "artistName": "Bea Bitmap"
+ },
+ {
+  "id": "pola",
+  "name": "Polacanthus",
+  "rarity": "uncommon",
+  "type": "rock",
+  "artist": "kawaii",
+  "power": 80,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "5 m long",
+  "moves": [
+   {
+    "name": "Spike Shell",
+    "cost": 1,
+    "dmg": 20
+   },
+   {
+    "name": "Prickle Roll",
+    "cost": 2,
+    "dmg": 40
+   }
+  ],
+  "fact": "Its name means \"many spines\". It was covered in them.",
+  "scene": "A round little Polacanthus covered in spikes like a hedgehog, looking very pleased with itself.",
+  "no": 54,
+  "artistName": "Momo Chi"
+ },
+ {
+  "id": "plesio",
+  "name": "Plesiosaurus",
+  "rarity": "uncommon",
+  "type": "water",
+  "artist": "ink",
+  "power": 90,
+  "era": "Jurassic",
+  "diet": "Fish-eater",
+  "size": "3.5 m long",
+  "moves": [
+   {
+    "name": "Flipper Glide",
+    "cost": 1,
+    "dmg": 20
+   },
+   {
+    "name": "Neck Strike",
+    "cost": 3,
+    "dmg": 50
+   }
+  ],
+  "fact": "A sea reptile with four flippers and a long neck, which \"flew\" through the water.",
+  "scene": "A long-necked Plesiosaurus with four flippers, swimming down in a curve through deep water, seen from the side.",
+  "no": 55,
+  "artistName": "Kaze"
+ },
+ {
+  "id": "elasmo",
+  "name": "Elasmosaurus",
+  "rarity": "uncommon",
+  "type": "water",
+  "artist": "chalk",
+  "power": 100,
+  "era": "Cretaceous",
+  "diet": "Fish-eater",
+  "size": "14 m long",
+  "moves": [
+   {
+    "name": "Deep Dive",
+    "cost": 2,
+    "dmg": 30
+   },
+   {
+    "name": "Long Neck Lash",
+    "cost": 3,
+    "dmg": 60
+   }
+  ],
+  "fact": "Its neck was longer than the rest of its body, with 72 bones in it.",
+  "scene": "An Elasmosaurus whose incredibly long neck loops once right round the picture, with small fish swimming through the loop.",
+  "no": 56,
+  "artistName": "Miss Tavish"
+ },
+ {
+  "id": "rhampho",
+  "name": "Rhamphorhynchus",
+  "rarity": "uncommon",
+  "type": "sky",
+  "artist": "biro",
+  "power": 80,
+  "era": "Jurassic",
+  "diet": "Fish-eater",
+  "size": "1.8 m wings",
+  "moves": [
+   {
+    "name": "Tail Rudder",
+    "cost": 1,
+    "dmg": 20
+   },
+   {
+    "name": "Dive Bomb",
+    "cost": 2,
+    "dmg": 40
+   }
+  ],
+  "fact": "A flying reptile with needle teeth and a diamond-shaped tip on its tail.",
+  "scene": "A Rhamphorhynchus with a long tail ending in a diamond shape, diving straight down towards the sea, seen from above.",
+  "no": 57,
+  "artistName": "Ben, Class 4B"
+ },
+ {
+  "id": "alberto",
+  "name": "Albertosaurus",
+  "rarity": "uncommon",
+  "type": "fire",
+  "artist": "spray",
+  "power": 110,
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "9 m long",
+  "moves": [
+   {
+    "name": "Chase",
+    "cost": 2,
+    "dmg": 30
+   },
+   {
+    "name": "Pack Bite",
+    "cost": 3,
+    "dmg": 70
+   }
+  ],
+  "fact": "A smaller, faster cousin of T. rex that may have hunted in packs.",
+  "scene": "An Albertosaurus running flat out towards the LEFT, jaws open, seen from the side.",
+  "no": 58,
+  "artistName": "Dax One"
+ },
+ {
+  "id": "euoplo",
+  "name": "Euoplocephalus",
+  "rarity": "uncommon",
+  "type": "rock",
+  "artist": "crayon",
+  "power": 90,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "6 m long",
+  "moves": [
+   {
+    "name": "Shield Up",
+    "cost": 1,
+    "dmg": 20
+   },
+   {
+    "name": "Club Thump",
+    "cost": 3,
+    "dmg": 60
+   }
+  ],
+  "fact": "Its name means \"well-armoured head\". Even its eyelids were armoured.",
+  "scene": "An armoured Euoplocephalus seen from behind, its heavy tail club raised in the air.",
+  "no": 59,
+  "artistName": "Pip Scribble"
+ },
+ {
+  "id": "argentino",
+  "name": "Argentinosaurus",
+  "rarity": "uncommon",
+  "type": "leaf",
+  "artist": "storybook",
+  "power": 110,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "35 m long",
+  "moves": [
+   {
+    "name": "Earth Shake",
+    "cost": 2,
+    "dmg": 30
+   },
+   {
+    "name": "Giant Stride",
+    "cost": 4,
+    "dmg": 70
+   }
+  ],
+  "fact": "Maybe the biggest land animal ever: as long as three buses and as heavy as ten elephants.",
+  "scene": "A colossal Argentinosaurus walking through a forest that only reaches its knees, with birds circling its head, seen from far below.",
+  "no": 60,
+  "artistName": "Odette Fable"
+ },
+ {
+  "id": "rex",
+  "name": "Tyrannosaurus Rex",
+  "rarity": "rare",
+  "type": "fire",
+  "artist": "biro",
+  "power": 200,
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "12 m long",
+  "moves": [
+   {
+    "name": "King Roar",
+    "cost": 3,
+    "dmg": 90
+   },
+   {
+    "name": "Titan Bite",
+    "cost": 4,
+    "dmg": 160
+   }
+  ],
+  "fact": "The king. Its bite was the strongest of any land animal that has ever lived.",
+  "scene": "A Tyrannosaurus rex seen from the front, stomping straight towards the viewer, roaring, with tiny arms.",
+  "no": 61,
+  "artistName": "Ben, Class 4B"
+ },
+ {
+  "id": "spino",
+  "name": "Spinosaurus",
+  "rarity": "rare",
+  "type": "water",
+  "artist": "clay",
+  "power": 180,
+  "era": "Cretaceous",
+  "diet": "Fish-eater",
+  "size": "15 m long",
+  "moves": [
+   {
+    "name": "River Lunge",
+    "cost": 2,
+    "dmg": 70
+   },
+   {
+    "name": "Sail Storm",
+    "cost": 4,
+    "dmg": 140
+   }
+  ],
+  "fact": "The longest meat-eating dinosaur ever found, and it could swim.",
+  "scene": "A Spinosaurus with a tall sail and a long crocodile snout, swimming with just its sail and eyes above the water, heading LEFT.",
+  "no": 62,
+  "artistName": "Dot Morrow"
+ },
+ {
+  "id": "trike",
+  "name": "Triceratops",
+  "rarity": "rare",
+  "type": "leaf",
+  "artist": "pixel",
+  "power": 160,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "9 m long",
+  "moves": [
+   {
+    "name": "Frill Flash",
+    "cost": 2,
+    "dmg": 60
+   },
+   {
+    "name": "Triple Horn",
+    "cost": 3,
+    "dmg": 120
+   }
+  ],
+  "fact": "Its skull was one of the biggest of any land animal: as long as a small car.",
+  "scene": "A Triceratops charging through a jungle clearing.",
+  "no": 63,
+  "artistName": "Bea Bitmap"
+ },
+ {
+  "id": "raptor",
+  "name": "Velociraptor",
+  "rarity": "rare",
+  "type": "storm",
+  "artist": "ink",
+  "power": 150,
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "2 m long",
+  "moves": [
+   {
+    "name": "Claw Flurry",
+    "cost": 2,
+    "dmg": 60
+   },
+   {
+    "name": "Pack Ambush",
+    "cost": 3,
+    "dmg": 110
+   }
+  ],
+  "fact": "It was covered in feathers and was about as tall as a turkey.",
+  "scene": "A feathered Velociraptor leaping through the air from the right towards the left, claws out.",
+  "no": 64,
+  "artistName": "Kaze"
+ },
+ {
+  "id": "brachio",
+  "name": "Brachiosaurus",
+  "rarity": "rare",
+  "type": "leaf",
+  "artist": "collage",
+  "power": 170,
+  "era": "Jurassic",
+  "diet": "Plant-eater",
+  "size": "26 m long",
+  "moves": [
+   {
+    "name": "Tree Topper",
+    "cost": 2,
+    "dmg": 60
+   },
+   {
+    "name": "Mighty Stomp",
+    "cost": 4,
+    "dmg": 130
+   }
+  ],
+  "fact": "As tall as a four-storey building. Its front legs were longer than its back legs.",
+  "scene": "A Brachiosaurus with an enormously long neck reaching up to eat leaves from the very top of a tall tree, seen from the side, facing LEFT.",
+  "no": 65,
+  "artistName": "Otto Papier"
+ },
+ {
+  "id": "anky",
+  "name": "Ankylosaurus",
+  "rarity": "rare",
+  "type": "rock",
+  "artist": "watercolour",
+  "power": 150,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "8 m long",
+  "moves": [
+   {
+    "name": "Armour Up",
+    "cost": 1,
+    "dmg": 40
+   },
+   {
+    "name": "Club Smash",
+    "cost": 3,
+    "dmg": 120
+   }
+  ],
+  "fact": "Built like a tank. Even its eyelids were covered in armour.",
+  "scene": "An Ankylosaurus seen from above, swinging its tail club in a canyon.",
+  "no": 66,
+  "artistName": "Wren Loch"
+ },
+ {
+  "id": "giga",
+  "name": "Giganotosaurus",
+  "rarity": "rare",
+  "type": "fire",
+  "artist": "shapes",
+  "power": 180,
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "13 m long",
+  "moves": [
+   {
+    "name": "Giant Jaws",
+    "cost": 3,
+    "dmg": 80
+   },
+   {
+    "name": "Southern Fury",
+    "cost": 4,
+    "dmg": 150
+   }
+  ],
+  "fact": "Even longer than T. rex, with a skull as long as a grown-up.",
+  "scene": "A giant Giganotosaurus seen from the front, head lowered towards the viewer, towering over tiny trees.",
+  "no": 67,
+  "artistName": "Bruno Kube"
+ },
+ {
+  "id": "stego",
+  "name": "Stegosaurus",
+  "rarity": "rare",
+  "type": "leaf",
+  "artist": "watercolour",
+  "power": 150,
+  "era": "Jurassic",
+  "diet": "Plant-eater",
+  "size": "9 m long",
+  "moves": [
+   {
+    "name": "Plate Shield",
+    "cost": 1,
+    "dmg": 40
+   },
+   {
+    "name": "Spike Swing",
+    "cost": 3,
+    "dmg": 110
+   }
+  ],
+  "fact": "The four spikes on its tail have their own name: a thagomizer.",
+  "scene": "A Stegosaurus seen from behind, walking into a meadow, looking back.",
+  "no": 68,
+  "artistName": "Wren Loch"
+ },
+ {
+  "id": "allo",
+  "name": "Allosaurus",
+  "rarity": "rare",
+  "type": "fire",
+  "artist": "lino",
+  "power": 160,
+  "era": "Jurassic",
+  "diet": "Meat-eater",
+  "size": "9 m long",
+  "moves": [
+   {
+    "name": "Hatchet Bite",
+    "cost": 2,
+    "dmg": 70
+   },
+   {
+    "name": "Ambush",
+    "cost": 3,
+    "dmg": 120
+   }
+  ],
+  "fact": "The top hunter of the Jurassic. It swung its head like an axe.",
+  "scene": "An Allosaurus striding to the LEFT with jaws open, seen from the side, with ferns and a low sun behind.",
+  "no": 69,
+  "artistName": "Ines Block"
+ },
+ {
+  "id": "carno",
+  "name": "Carnotaurus",
+  "rarity": "rare",
+  "type": "fire",
+  "artist": "neon",
+  "power": 160,
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "8 m long",
+  "moves": [
+   {
+    "name": "Bull Rush",
+    "cost": 2,
+    "dmg": 70
+   },
+   {
+    "name": "Horn Charge",
+    "cost": 3,
+    "dmg": 120
+   }
+  ],
+  "fact": "A hunter with two bull horns, and arms even smaller than a T. rex's.",
+  "scene": "A Carnotaurus with two bull horns above its eyes and tiny arms, seen head-on, charging at the viewer.",
+  "no": 70,
+  "artistName": "Vega"
+ },
+ {
+  "id": "ptera",
+  "name": "Pteranodon",
+  "rarity": "rare",
+  "type": "sky",
+  "artist": "pixel",
+  "power": 140,
+  "era": "Cretaceous",
+  "diet": "Fish-eater",
+  "size": "7 m wings",
+  "moves": [
+   {
+    "name": "Sky Dive",
+    "cost": 2,
+    "dmg": 50
+   },
+   {
+    "name": "Wind Slice",
+    "cost": 3,
+    "dmg": 100
+   }
+  ],
+  "fact": "Not a dinosaur but a flying reptile, with wings wider than a bus is long.",
+  "scene": "A Pteranodon seen from below, flying over sea cliffs at sunset.",
+  "no": 71,
+  "artistName": "Bea Bitmap"
+ },
+ {
+  "id": "mosa",
+  "name": "Mosasaurus",
+  "rarity": "rare",
+  "type": "water",
+  "artist": "glass",
+  "power": 170,
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "15 m long",
+  "moves": [
+   {
+    "name": "Deep Lunge",
+    "cost": 2,
+    "dmg": 70
+   },
+   {
+    "name": "Sea King",
+    "cost": 4,
+    "dmg": 140
+   }
+  ],
+  "fact": "The giant of the ancient seas, with a second set of teeth in the roof of its mouth.",
+  "scene": "A huge Mosasaurus rising from the deep with its jaws wide open, seen from above, with small fish scattering.",
+  "no": 72,
+  "artistName": "Vitra Lux"
+ },
+ {
+  "id": "theri",
+  "name": "Therizinosaurus",
+  "rarity": "rare",
+  "type": "leaf",
+  "artist": "swirl",
+  "power": 150,
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "10 m long",
+  "moves": [
+   {
+    "name": "Scythe Swipe",
+    "cost": 2,
+    "dmg": 60
+   },
+   {
+    "name": "Giant Claws",
+    "cost": 3,
+    "dmg": 110
+   }
+  ],
+  "fact": "Its claws were a metre long: the longest of any animal ever. It used them to pull down branches.",
+  "scene": "A pot-bellied feathered Therizinosaurus with three enormously long claws on each hand, arms flung wide, seen from the front.",
+  "no": 73,
+  "artistName": "Flora Swirl"
+ },
+ {
+  "id": "diplo",
+  "name": "Diplodocus",
+  "rarity": "rare",
+  "type": "leaf",
+  "artist": "chalk",
+  "power": 150,
+  "era": "Jurassic",
+  "diet": "Plant-eater",
+  "size": "26 m long",
+  "moves": [
+   {
+    "name": "Whip Tail",
+    "cost": 2,
+    "dmg": 60
+   },
+   {
+    "name": "Long March",
+    "cost": 3,
+    "dmg": 100
+   }
+  ],
+  "fact": "One of the longest dinosaurs. Its tail alone had about 80 bones.",
+  "scene": "A Diplodocus so long that its neck stretches off towards the top right and its whip tail curls right across the bottom, seen from slightly above.",
+  "no": 74,
+  "artistName": "Miss Tavish"
+ },
+ {
+  "id": "quetzal",
+  "name": "Quetzalcoatlus",
+  "rarity": "rare",
+  "type": "sky",
+  "artist": "ink",
+  "power": 160,
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "11 m wings",
+  "moves": [
+   {
+    "name": "Shadow Glide",
+    "cost": 2,
+    "dmg": 60
+   },
+   {
+    "name": "Sky Titan",
+    "cost": 4,
+    "dmg": 120
+   }
+  ],
+  "fact": "The biggest flying animal ever. Standing up, it was as tall as a giraffe.",
+  "scene": "A gigantic Quetzalcoatlus with a very long beak, standing on the ground on its folded wings, as tall as the trees, seen from the side.",
+  "no": 75,
+  "artistName": "Kaze"
+ },
+ {
+  "id": "utah",
+  "name": "Utahraptor",
+  "rarity": "rare",
+  "type": "storm",
+  "artist": "shapes",
+  "power": 160,
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "6 m long",
+  "moves": [
+   {
+    "name": "Giant Claw",
+    "cost": 2,
+    "dmg": 70
+   },
+   {
+    "name": "Raptor Rush",
+    "cost": 3,
+    "dmg": 120
+   }
+  ],
+  "fact": "The biggest raptor of all: as heavy as a polar bear, with a claw as long as a banana.",
+  "scene": "A big feathered Utahraptor with one huge sickle claw raised, in profile facing LEFT.",
+  "no": 76,
+  "artistName": "Bruno Kube"
+ },
+ {
+  "name": "Tyrannosaurus Rex",
+  "type": "fire",
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "12 m long",
+  "fact": "The king. Its bite was the strongest of any land animal that has ever lived.",
+  "id": "rex-ultra",
+  "base": "rex",
+  "rarity": "ultra",
+  "artist": "glass",
+  "power": 260,
+  "moves": [
+   {
+    "name": "King Roar",
+    "cost": 3,
+    "dmg": 120
+   },
+   {
+    "name": "Titan Bite",
+    "cost": 4,
+    "dmg": 190
+   }
+  ],
+  "scene": "A Tyrannosaurus rex head in profile facing LEFT, roaring, jaws wide, with rays of light behind it.",
+  "no": 77,
+  "artistName": "Vitra Lux"
+ },
+ {
+  "name": "Spinosaurus",
+  "type": "water",
+  "era": "Cretaceous",
+  "diet": "Fish-eater",
+  "size": "15 m long",
+  "fact": "The longest meat-eating dinosaur ever found, and it could swim.",
+  "id": "spino-ultra",
+  "base": "spino",
+  "rarity": "ultra",
+  "artist": "swirl",
+  "power": 240,
+  "moves": [
+   {
+    "name": "River Lunge",
+    "cost": 2,
+    "dmg": 100
+   },
+   {
+    "name": "Sail Storm",
+    "cost": 4,
+    "dmg": 170
+   }
+  ],
+  "scene": "A Spinosaurus with a tall sail on its back and a long crocodile snout, rising up out of the water with a fish in its jaws, seen from the front.",
+  "no": 78,
+  "artistName": "Flora Swirl"
+ },
+ {
+  "name": "Triceratops",
+  "type": "leaf",
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "9 m long",
+  "fact": "Its skull was one of the biggest of any land animal: as long as a small car.",
+  "id": "trike-ultra",
+  "base": "trike",
+  "rarity": "ultra",
+  "artist": "lino",
+  "power": 220,
+  "moves": [
+   {
+    "name": "Frill Flash",
+    "cost": 2,
+    "dmg": 90
+   },
+   {
+    "name": "Triple Horn",
+    "cost": 3,
+    "dmg": 150
+   }
+  ],
+  "scene": "A Triceratops seen exactly from the front, its huge patterned frill filling the top of the picture like a shield, three horns pointing at the viewer.",
+  "no": 79,
+  "artistName": "Ines Block"
+ },
+ {
+  "name": "Velociraptor",
+  "type": "storm",
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "2 m long",
+  "fact": "It was covered in feathers and was about as tall as a turkey.",
+  "id": "raptor-ultra",
+  "base": "raptor",
+  "rarity": "ultra",
+  "artist": "spray",
+  "power": 210,
+  "moves": [
+   {
+    "name": "Claw Flurry",
+    "cost": 2,
+    "dmg": 90
+   },
+   {
+    "name": "Pack Ambush",
+    "cost": 3,
+    "dmg": 140
+   }
+  ],
+  "scene": "A feathered Velociraptor crouched on a rock, facing the viewer.",
+  "no": 80,
+  "artistName": "Dax One"
+ },
+ {
+  "name": "Brachiosaurus",
+  "type": "leaf",
+  "era": "Jurassic",
+  "diet": "Plant-eater",
+  "size": "26 m long",
+  "fact": "As tall as a four-storey building. Its front legs were longer than its back legs.",
+  "id": "brachio-ultra",
+  "base": "brachio",
+  "rarity": "ultra",
+  "artist": "storybook",
+  "power": 230,
+  "moves": [
+   {
+    "name": "Tree Topper",
+    "cost": 2,
+    "dmg": 90
+   },
+   {
+    "name": "Mighty Stomp",
+    "cost": 4,
+    "dmg": 160
+   }
+  ],
+  "scene": "A Brachiosaurus seen from far below, its neck rising up through the clouds, with tiny pterosaurs flying around its head at sunset.",
+  "no": 81,
+  "artistName": "Odette Fable"
+ },
+ {
+  "name": "Ankylosaurus",
+  "type": "rock",
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "8 m long",
+  "fact": "Built like a tank. Even its eyelids were covered in armour.",
+  "id": "anky-ultra",
+  "base": "anky",
+  "rarity": "ultra",
+  "artist": "felt",
+  "power": 210,
+  "moves": [
+   {
+    "name": "Armour Up",
+    "cost": 1,
+    "dmg": 70
+   },
+   {
+    "name": "Club Smash",
+    "cost": 3,
+    "dmg": 150
+   }
+  ],
+  "scene": "An Ankylosaurus seen from the side facing right, its tail club swung high over its back, every armour plate a different patch.",
+  "no": 82,
+  "artistName": "Nana Stitch"
+ },
+ {
+  "name": "Giganotosaurus",
+  "type": "fire",
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "13 m long",
+  "fact": "Even longer than T. rex, with a skull as long as a grown-up.",
+  "id": "giga-ultra",
+  "base": "giga",
+  "rarity": "ultra",
+  "artist": "neon",
+  "power": 240,
+  "moves": [
+   {
+    "name": "Giant Jaws",
+    "cost": 3,
+    "dmg": 110
+   },
+   {
+    "name": "Southern Fury",
+    "cost": 4,
+    "dmg": 180
+   }
+  ],
+  "scene": "A Giganotosaurus in profile facing right, mouth wide open in a roar, drawn as a giant glowing sign.",
+  "no": 83,
+  "artistName": "Vega"
+ },
+ {
+  "name": "Stegosaurus",
+  "type": "leaf",
+  "era": "Jurassic",
+  "diet": "Plant-eater",
+  "size": "9 m long",
+  "fact": "The four spikes on its tail have their own name: a thagomizer.",
+  "id": "stego-ultra",
+  "base": "stego",
+  "rarity": "ultra",
+  "artist": "glass",
+  "power": 210,
+  "moves": [
+   {
+    "name": "Plate Shield",
+    "cost": 1,
+    "dmg": 70
+   },
+   {
+    "name": "Spike Swing",
+    "cost": 3,
+    "dmg": 140
+   }
+  ],
+  "scene": "A Stegosaurus seen from the side facing LEFT, each of its tall back plates a different jewel colour, with the sun setting behind them.",
+  "no": 84,
+  "artistName": "Vitra Lux"
+ },
+ {
+  "name": "Allosaurus",
+  "type": "fire",
+  "era": "Jurassic",
+  "diet": "Meat-eater",
+  "size": "9 m long",
+  "fact": "The top hunter of the Jurassic. It swung its head like an axe.",
+  "id": "allo-ultra",
+  "base": "allo",
+  "rarity": "ultra",
+  "artist": "spray",
+  "power": 220,
+  "moves": [
+   {
+    "name": "Hatchet Bite",
+    "cost": 2,
+    "dmg": 100
+   },
+   {
+    "name": "Ambush",
+    "cost": 3,
+    "dmg": 150
+   }
+  ],
+  "scene": "An Allosaurus leaping down from a rock ledge towards the viewer, claws spread.",
+  "no": 85,
+  "artistName": "Dax One"
+ },
+ {
+  "name": "Carnotaurus",
+  "type": "fire",
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "8 m long",
+  "fact": "A hunter with two bull horns, and arms even smaller than a T. rex's.",
+  "id": "carno-ultra",
+  "base": "carno",
+  "rarity": "ultra",
+  "artist": "pixel",
+  "power": 220,
+  "moves": [
+   {
+    "name": "Bull Rush",
+    "cost": 2,
+    "dmg": 100
+   },
+   {
+    "name": "Horn Charge",
+    "cost": 3,
+    "dmg": 150
+   }
+  ],
+  "scene": "A Carnotaurus running along a beach at sunset towards the right, kicking up sand.",
+  "no": 86,
+  "artistName": "Bea Bitmap"
+ },
+ {
+  "name": "Parasaurolophus",
+  "type": "water",
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "9 m long",
+  "fact": "Its hollow crest worked like a trumpet, so it could call to its herd from far away.",
+  "id": "para-ultra",
+  "base": "para",
+  "rarity": "ultra",
+  "artist": "collage",
+  "power": 130,
+  "moves": [
+   {
+    "name": "Crest Honk",
+    "cost": 1,
+    "dmg": 50
+   },
+   {
+    "name": "Herd Rush",
+    "cost": 2,
+    "dmg": 70
+   }
+  ],
+  "scene": "A Parasaurolophus with a long curved crest, head thrown back and calling up at a huge full moon, with a herd of small ones along the hill behind.",
+  "no": 87,
+  "artistName": "Otto Papier"
+ },
+ {
+  "name": "Pteranodon",
+  "type": "sky",
+  "era": "Cretaceous",
+  "diet": "Fish-eater",
+  "size": "7 m wings",
+  "fact": "Not a dinosaur but a flying reptile, with wings wider than a bus is long.",
+  "id": "ptera-ultra",
+  "base": "ptera",
+  "rarity": "ultra",
+  "artist": "ink",
+  "power": 200,
+  "moves": [
+   {
+    "name": "Sky Dive",
+    "cost": 2,
+    "dmg": 80
+   },
+   {
+    "name": "Wind Slice",
+    "cost": 3,
+    "dmg": 130
+   }
+  ],
+  "scene": "A Pteranodon diving straight down the picture, wings folded back, towards waves at the bottom.",
+  "no": 88,
+  "artistName": "Kaze"
+ },
+ {
+  "name": "Mosasaurus",
+  "type": "water",
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "15 m long",
+  "fact": "The giant of the ancient seas, with a second set of teeth in the roof of its mouth.",
+  "id": "mosa-ultra",
+  "base": "mosa",
+  "rarity": "ultra",
+  "artist": "swirl",
+  "power": 230,
+  "moves": [
+   {
+    "name": "Deep Lunge",
+    "cost": 2,
+    "dmg": 100
+   },
+   {
+    "name": "Sea King",
+    "cost": 4,
+    "dmg": 170
+   }
+  ],
+  "scene": "A Mosasaurus twisting in a spiral through the deep sea, surrounded by rings of bubbles and glowing fish.",
+  "no": 89,
+  "artistName": "Flora Swirl"
+ },
+ {
+  "name": "Dilophosaurus",
+  "type": "fire",
+  "era": "Jurassic",
+  "diet": "Meat-eater",
+  "size": "7 m long",
+  "fact": "It had two thin crests on its head, like a pair of half plates.",
+  "id": "dilo-ultra",
+  "base": "dilo",
+  "rarity": "ultra",
+  "artist": "cave",
+  "power": 150,
+  "moves": [
+   {
+    "name": "Crest Flash",
+    "cost": 1,
+    "dmg": 50
+   },
+   {
+    "name": "Hiss Strike",
+    "cost": 3,
+    "dmg": 90
+   }
+  ],
+  "scene": "A Dilophosaurus with two crests on its head, standing tall, surrounded by hand prints and a ring of tiny dancing figures.",
+  "no": 90,
+  "artistName": "Og"
+ },
+ {
+  "name": "Compsognathus",
+  "type": "leaf",
+  "era": "Jurassic",
+  "diet": "Meat-eater",
+  "size": "1 m long",
+  "fact": "About the size of a chicken, and one of the fastest little hunters of its time.",
+  "id": "compy-ultra",
+  "base": "compy",
+  "rarity": "ultra",
+  "artist": "kawaii",
+  "power": 100,
+  "moves": [
+   {
+    "name": "Quick Nip",
+    "cost": 1,
+    "dmg": 40
+   },
+   {
+    "name": "Zoom Dash",
+    "cost": 2,
+    "dmg": 60
+   }
+  ],
+  "scene": "A whole pile of tiny Compsognathus stacked on each other's shoulders in a wobbly tower to reach a berry.",
+  "no": 91,
+  "artistName": "Momo Chi"
+ },
+ {
+  "name": "Baby Triceratops",
+  "type": "leaf",
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "1 m long",
+  "fact": "A baby Triceratops had three tiny stubs where its horns would grow.",
+  "id": "baby-trike-ultra",
+  "base": "baby-trike",
+  "rarity": "ultra",
+  "artist": "mabel",
+  "power": 110,
+  "moves": [
+   {
+    "name": "Head Bump",
+    "cost": 1,
+    "dmg": 40
+   },
+   {
+    "name": "Frill Wiggle",
+    "cost": 2,
+    "dmg": 50
+   }
+  ],
+  "scene": "A baby Triceratops with a very big mummy Triceratops, holding hands, with flowers and a rainbow.",
+  "no": 92,
+  "artistName": "Mabel, age 6"
+ },
+ {
+  "name": "Pachycephalosaurus",
+  "type": "rock",
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "4.5 m long",
+  "fact": "The bone on top of its head was 25 cm thick. That is thicker than a brick!",
+  "id": "pachy-ultra",
+  "base": "pachy",
+  "rarity": "ultra",
+  "artist": "toon",
+  "power": 120,
+  "moves": [
+   {
+    "name": "Head Bonk",
+    "cost": 1,
+    "dmg": 50
+   },
+   {
+    "name": "Dome Charge",
+    "cost": 3,
+    "dmg": 80
+   }
+  ],
+  "scene": "Two Pachycephalosaurus with domed heads bonking heads together in mid-air, with stars flying out.",
+  "no": 93,
+  "artistName": "Sunny Hollis"
+ },
+ {
+  "name": "Diplodocus",
+  "type": "leaf",
+  "era": "Jurassic",
+  "diet": "Plant-eater",
+  "size": "26 m long",
+  "fact": "One of the longest dinosaurs. Its tail alone had about 80 bones.",
+  "id": "diplo-ultra",
+  "base": "diplo",
+  "rarity": "ultra",
+  "artist": "watercolour",
+  "power": 210,
+  "moves": [
+   {
+    "name": "Whip Tail",
+    "cost": 2,
+    "dmg": 90
+   },
+   {
+    "name": "Long March",
+    "cost": 3,
+    "dmg": 130
+   }
+  ],
+  "scene": "A Diplodocus wading across a misty lake at dawn, its long neck and its reflection making one big curve.",
+  "no": 94,
+  "artistName": "Wren Loch"
+ },
+ {
+  "name": "Tyrannosaurus Rex",
+  "type": "fire",
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "12 m long",
+  "fact": "The king. Its bite was the strongest of any land animal that has ever lived.",
+  "id": "rex-secret",
+  "base": "rex",
+  "rarity": "secret",
+  "artist": "storybook",
+  "power": 310,
+  "moves": [
+   {
+    "name": "King Roar",
+    "cost": 3,
+    "dmg": 145
+   },
+   {
+    "name": "Titan Bite",
+    "cost": 4,
+    "dmg": 215
+   }
+  ],
+  "scene": "A Tyrannosaurus rex asleep at the top of a hill under a huge starry sky with a comet, with small dinosaurs of many kinds curled up asleep all around it, glowing mushrooms and fireflies.",
+  "no": 95,
+  "artistName": "Odette Fable",
+  "spots": "radial-gradient(ellipse 44% 12% at 50% 27%, #000 42%, transparent 100%), radial-gradient(ellipse 30% 7% at 62% 6%, #000 42%, transparent 100%), radial-gradient(ellipse 56% 9% at 50% 74%, #000 42%, transparent 100%)"
+ },
+ {
+  "name": "Spinosaurus",
+  "type": "water",
+  "era": "Cretaceous",
+  "diet": "Fish-eater",
+  "size": "15 m long",
+  "fact": "The longest meat-eating dinosaur ever found, and it could swim.",
+  "id": "spino-secret",
+  "base": "spino",
+  "rarity": "secret",
+  "artist": "storybook",
+  "power": 290,
+  "moves": [
+   {
+    "name": "River Lunge",
+    "cost": 2,
+    "dmg": 125
+   },
+   {
+    "name": "Sail Storm",
+    "cost": 4,
+    "dmg": 195
+   }
+  ],
+  "scene": "A Spinosaurus wading through a glowing river at twilight in a prehistoric jungle.",
+  "no": 96,
+  "artistName": "Odette Fable",
+  "spots": "radial-gradient(ellipse 30% 15% at 36% 30%, #000 42%, transparent 100%), radial-gradient(ellipse 17% 8% at 71% 8%, #000 42%, transparent 100%), radial-gradient(ellipse 62% 11% at 50% 69%, #000 42%, transparent 100%)"
+ },
+ {
+  "name": "Triceratops",
+  "type": "leaf",
+  "era": "Cretaceous",
+  "diet": "Plant-eater",
+  "size": "9 m long",
+  "fact": "Its skull was one of the biggest of any land animal: as long as a small car.",
+  "id": "trike-secret",
+  "base": "trike",
+  "rarity": "secret",
+  "artist": "clay",
+  "power": 270,
+  "moves": [
+   {
+    "name": "Frill Flash",
+    "cost": 2,
+    "dmg": 115
+   },
+   {
+    "name": "Triple Horn",
+    "cost": 3,
+    "dmg": 175
+   }
+  ],
+  "scene": "A whole Triceratops family, two big ones and three babies, having a picnic of ferns and fruit in a clearing, with a volcano, a waterfall and a rainbow behind, every leaf and pebble modelled by hand.",
+  "no": 97,
+  "artistName": "Dot Morrow",
+  "spots": "radial-gradient(ellipse 42% 8% at 52% 8%, #000 42%, transparent 100%), radial-gradient(ellipse 16% 12% at 82% 22%, #000 42%, transparent 100%), radial-gradient(ellipse 46% 11% at 52% 56%, #000 42%, transparent 100%)"
+ },
+ {
+  "name": "Velociraptor",
+  "type": "storm",
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "2 m long",
+  "fact": "It was covered in feathers and was about as tall as a turkey.",
+  "id": "raptor-secret",
+  "base": "raptor",
+  "rarity": "secret",
+  "artist": "neon",
+  "power": 260,
+  "moves": [
+   {
+    "name": "Claw Flurry",
+    "cost": 2,
+    "dmg": 115
+   },
+   {
+    "name": "Pack Ambush",
+    "cost": 3,
+    "dmg": 165
+   }
+  ],
+  "scene": "A pack of five Velociraptors running through a jungle at night, every plant, vine and dinosaur drawn in glowing lines of different colours, with a full moon above.",
+  "no": 98,
+  "artistName": "Vega",
+  "spots": "radial-gradient(ellipse 15% 8% at 72% 8%, #000 42%, transparent 100%), radial-gradient(ellipse 38% 15% at 58% 38%, #000 42%, transparent 100%), radial-gradient(ellipse 64% 9% at 50% 86%, #000 42%, transparent 100%)"
+ },
+ {
+  "name": "Brachiosaurus",
+  "type": "leaf",
+  "era": "Jurassic",
+  "diet": "Plant-eater",
+  "size": "26 m long",
+  "fact": "As tall as a four-storey building. Its front legs were longer than its back legs.",
+  "id": "brachio-secret",
+  "base": "brachio",
+  "rarity": "secret",
+  "artist": "collage",
+  "power": 280,
+  "moves": [
+   {
+    "name": "Tree Topper",
+    "cost": 2,
+    "dmg": 115
+   },
+   {
+    "name": "Mighty Stomp",
+    "cost": 4,
+    "dmg": 185
+   }
+  ],
+  "scene": "A herd of Brachiosaurus crossing a wide valley at sunrise, the nearest one huge in the foreground with birds riding on its back, layers of hills, a river and a volcano behind.",
+  "no": 99,
+  "artistName": "Otto Papier",
+  "spots": "radial-gradient(ellipse 34% 11% at 28% 24%, #000 42%, transparent 100%), radial-gradient(ellipse 30% 17% at 52% 46%, #000 42%, transparent 100%), radial-gradient(ellipse 34% 9% at 76% 60%, #000 42%, transparent 100%)"
+ },
+ {
+  "name": "Tyrannosaurus Rex",
+  "type": "fire",
+  "era": "Cretaceous",
+  "diet": "Meat-eater",
+  "size": "12 m long",
+  "fact": "The king. Its bite was the strongest of any land animal that has ever lived.",
+  "id": "rex-gold",
+  "base": "rex",
+  "rarity": "gold",
+  "artist": "gold",
+  "power": 380,
+  "moves": [
+   {
+    "name": "King Roar",
+    "cost": 3,
+    "dmg": 180
+   },
+   {
+    "name": "Titan Bite",
+    "cost": 4,
+    "dmg": 250
+   }
+  ],
+  "scene": "A mighty Tyrannosaurus rex roaring, head and shoulders in three-quarter view, wearing a small crown.",
+  "no": 100,
+  "artistName": "The Goldsmith"
+ }
+]
