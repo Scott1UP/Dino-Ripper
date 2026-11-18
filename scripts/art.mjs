@@ -339,9 +339,11 @@ async function pack() {
     if (!(await exists(src))) continue;
     let img = sharp(src);
     if (spec.transparent) img = img.trim().resize({ width: 1000, withoutEnlargement: true });
-    else if (spec.size === WIDE) img = img.resize({ width: 960 });
+    // Sized for where each picture is shown at its largest, on a screen with two device pixels per pixel:
+    // a framed card's picture window in the close-up view is about 770 across, a full-art card about 870.
+    else if (spec.size === WIDE) img = img.resize({ width: 800 });
     else img = img.resize({ width: 840 });
-    await img.webp({ quality: 84 }).toFile(path.join(OUT, `${id}.webp`));
+    await img.webp({ quality: 78 }).toFile(path.join(OUT, `${id}.webp`));
     console.log(`[${id}] packed public/art/${id}.webp`);
   }
 }
