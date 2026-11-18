@@ -24,8 +24,10 @@
    frame. For the same reason the drift stops on cards hidden behind the close-up view. */
 .card.shine:not(.manual):not(.fin-matte) { animation: shimmer 5.5s ease-in-out var(--delay, 0s) infinite; }
 .zooming .card.shine:not(.zoomed) { animation-play-state: paused; }
-/* A binder page can hold nine foil cards, so in the pockets the light stays still; taking a card out to look at it brings its foil to life. */
-.pocket .card.shine { animation: none; }
+/* A binder page can hold nine foil cards, so in the pockets each card's light is frozen at a frame of its own;
+   nothing is repainted, and taking a card out to look at it brings its foil to life. */
+/* (Written as specifically as the rule that starts the animation, or that rule wins and the cards keep moving.) */
+.pocket .card.shine:not(.manual):not(.fin-matte) { animation-play-state: paused; }
 @keyframes shimmer {
   0%, 100% { --px: 4%; --py: 14%; }
   50% { --px: 96%; --py: 86%; }
@@ -121,7 +123,8 @@
   height: 58cqw;
   border-radius: 1.2cqw;
   overflow: hidden;
-  box-shadow: 0 0 0 0.7cqw var(--rim), 0 0.8cqw 1.6cqw rgba(0, 0, 0, 0.4);
+  /* A flat printed rim, with no shadow: the picture is part of the card, not something sitting on it. */
+  box-shadow: 0 0 0 0.7cqw var(--rim);
 }
 
 .strip {
@@ -278,14 +281,8 @@
   --glare: 0.45;
 }
 .r-secret .stars { color: #ffd84a; }
-/* Spot finish: foil only on chosen parts of the picture, plus the rainbow edge. Each card sets its
-   own --spots (three ovals, placed in scripts/build-set.py); these are a fallback. */
-.fin-spot {
-  --spots:
-    radial-gradient(ellipse 30% 15% at 36% 30%, #000 45%, transparent 100%),
-    radial-gradient(ellipse 17% 8% at 71% 8%, #000 40%, transparent 100%),
-    radial-gradient(ellipse 62% 11% at 50% 69%, #000 40%, transparent 100%);
-}
+/* Spot finish: foil only on chosen parts of the picture, plus the rainbow edge. Each card sets its own
+   --spots: three ovals, placed in scripts/build-set.py, which insists every secret rare has them. */
 .fin-spot .holo {
   opacity: 0.8;
   background: linear-gradient(115deg, var(--rainbow));

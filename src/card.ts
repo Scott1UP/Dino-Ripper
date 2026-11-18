@@ -29,7 +29,10 @@ export function createCard(def: CardDef, faceDown = false): HTMLElement {
   const el = document.createElement('div');
   el.className = `card r-${def.rarity} fin-${def.finish} t-${def.type}${r.fullArt ? ' full-art' : ''}${faceDown ? ' down' : ''}`;
   el.dataset.id = def.id;
-  el.style.setProperty('--delay', `${-Math.random() * 6}s`);
+  // Where in the shimmer this card starts, and where its light rests when the shimmer is frozen in the
+  // binder. It is fixed per card, not random: a binder page is rebuilt as it turns, and each card must
+  // come back looking exactly as it did.
+  el.style.setProperty('--delay', `${-((def.no * 1.618) % 5.5).toFixed(3)}s`);
   if (def.spots) el.style.setProperty('--spots', def.spots);
   el.innerHTML = `
     <div class="card-inner">
