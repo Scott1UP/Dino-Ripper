@@ -1,0 +1,13 @@
+# Netlify build settings. The build needs no API keys: all generated art is already checked in
+# under public/.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # The Vite version in this project needs a recent Node.
+  NODE_VERSION = "22"
+  # The address the link-preview tags point at (see vite.config.ts). Set here, not left to Netlify,
+  # because Netlify hands the build whatever the site was called at the time, and a site that is
+  # renamed afterwards keeps the old, dead address in its page until it is next built.
+  SITE_URL = "https://dino-ripper.netlify.app"
