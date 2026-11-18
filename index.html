@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#071216" />
+    <title>Dino Ripper</title>
+  </head>
+  <body>
+    <div id="bg"></div>
+    <img id="brand" src="./art/logo.webp" alt="Dino Ripper" draggable="false" />
+    <div id="hint"></div>
+    <div id="arrow"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M6 24h26V8l28 24-28 24V40H6z" /></svg></div>
+    <div id="table"></div>
+    <canvas id="packs"></canvas>
+    <button id="next" type="button">Next Pack</button>
+    <button id="binder-peek" type="button" aria-label="Open collection">
+      <span class="peek-cover"></span>
+      <span class="peek-count"></span>
+    </button>
+    <div id="celebrate"><div class="rays"></div></div>
+    <div id="banner"></div>
+    <button id="tap" type="button">Tap to sleeve</button>
+    <div id="binder"></div>
+    <div id="zoom"></div>
+    <canvas id="fx"></canvas>
+    <button id="mute" type="button" aria-label="Sound on or off"></button>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

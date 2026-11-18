@@ -1,0 +1,354 @@
+/* One card template for every rarity. All sizes are in cqw (1% of the card's width),
+   so a card looks the same at any size. Rarity changes artwork, colour and finish only. */
+
+@property --px { syntax: '<percentage>'; inherits: true; initial-value: 50%; }
+@property --py { syntax: '<percentage>'; inherits: true; initial-value: 50%; }
+
+.card {
+  --px: 50%;
+  --py: 50%;
+  --glare: 0.12;
+  --rainbow: #ff5f6d, #ffb347, #f9f871, #5dfdcb, #5cc8ff, #b28dff, #ff5f6d, #ffb347, #f9f871, #5dfdcb, #5cc8ff, #b28dff, #ff5f6d;
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 9 -5.3'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+  position: relative;
+  aspect-ratio: 63 / 88;
+  container-type: inline-size;
+  perspective: 1400px;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Light drifting across a face-up card, so the finish shows without tilting it. Matte cards have
+   nothing for the light to show, so they are left alone: moving it repaints the whole card every
+   frame. For the same reason the drift stops on cards hidden behind the close-up view. */
+.card.shine:not(.manual):not(.fin-matte) { animation: shimmer 5.5s ease-in-out var(--delay, 0s) infinite; }
+.zooming .card.shine:not(.zoomed) { animation-play-state: paused; }
+@keyframes shimmer {
+  0%, 100% { --px: 4%; --py: 14%; }
+  50% { --px: 96%; --py: 86%; }
+}
+
+.card-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+.card.down .card-inner { transform: rotateY(180deg); }
+.card.slow .card-inner { transition-duration: 0.9s; }
+
+.face {
+  position: absolute;
+  inset: 0;
+  border-radius: 4.6cqw;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  isolation: isolate;
+  box-shadow: 0 1cqw 3cqw rgba(0, 0, 0, 0.45);
+}
+.face img { display: block; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.face.back { transform: rotateY(180deg); background: #0c3a3a; }
+/* A soft darkening towards the edge, so the back has a clean rim without a drawn frame. */
+.face.back::after { content: ''; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 9cqw rgba(0, 0, 0, 0.55); pointer-events: none; }
+.back-amber { position: absolute; left: 50%; top: 50%; width: 84%; transform: translate(-50%, -50%); filter: drop-shadow(0 1.2cqw 2cqw rgba(0, 0, 0, 0.55)); }
+.back-amber img { height: auto; }
+.back-amber .back-logo { position: absolute; left: 17%; top: 50%; width: 66%; transform: translateY(-50%); filter: drop-shadow(0 0.5cqw 0.8cqw rgba(110, 40, 0, 0.7)); }
+/* The glassy top of the amber, lying over the logo so the logo sits inside it. */
+.back-amber::after {
+  content: '';
+  position: absolute;
+  inset: 6% 5%;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse 60% 34% at 36% 20%, rgba(255, 255, 255, 0.5), transparent 70%),
+    radial-gradient(ellipse at 50% 55%, transparent 45%, rgba(255, 150, 20, 0.35) 100%);
+  pointer-events: none;
+}
+
+/* ---- front: the shared template ------------------------------------------- */
+
+.front { background: var(--edge); padding: 3.2cqw; }
+
+.front .bleed {
+  position: absolute;
+  left: 2.3cqw;
+  top: 2.3cqw;
+  width: calc(100% - 4.6cqw);
+  height: calc(100% - 4.6cqw);
+  border-radius: 2.8cqw;
+  object-position: 50% 15%;
+}
+
+.plate {
+  position: relative;
+  isolation: isolate;
+  height: 100%;
+  border-radius: 2.4cqw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3cqw;
+  padding: 1.6cqw 2.2cqw 1.4cqw;
+  background: linear-gradient(170deg, var(--c1), var(--c2));
+  color: #1c1c22;
+  font-family: 'Fredoka', system-ui, sans-serif;
+}
+
+.top { flex: none; display: flex; align-items: center; gap: 1.5cqw; height: 9.5cqw; }
+.name { flex: 1; min-width: 0; font-weight: 600; font-size: 6.6cqw; line-height: 1; letter-spacing: -0.02em; white-space: nowrap; }
+.name.long { font-size: 5.1cqw; }
+.power { display: flex; align-items: baseline; gap: 0.8cqw; font-weight: 700; font-size: 7.2cqw; line-height: 1; }
+.power small { font-size: 2.3cqw; font-weight: 600; letter-spacing: 0.06em; opacity: 0.75; }
+.type, .cost i {
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--tc);
+  box-shadow: inset 0 -0.5cqw 0.8cqw rgba(0, 0, 0, 0.25), inset 0 0.4cqw 0.6cqw rgba(255, 255, 255, 0.5), 0 0.3cqw 0.6cqw rgba(0, 0, 0, 0.3);
+}
+.type { width: 7.8cqw; height: 7.8cqw; }
+.type svg, .cost svg { width: 62%; fill: #fff; }
+
+.window {
+  position: relative;
+  isolation: isolate;
+  flex: none;
+  height: 58cqw;
+  border-radius: 1.2cqw;
+  overflow: hidden;
+  box-shadow: 0 0 0 0.7cqw var(--rim), 0 0.8cqw 1.6cqw rgba(0, 0, 0, 0.4);
+}
+
+.strip {
+  flex: none;
+  height: 4.6cqw;
+  margin: 0 3cqw;
+  border-radius: 3cqw;
+  background: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  font-size: 2.45cqw;
+  line-height: 4.6cqw;
+  text-align: center;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.moves { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: space-evenly; padding: 0 1cqw; }
+.move { display: flex; align-items: center; gap: 2cqw; }
+.cost { flex: none; display: flex; gap: 0.7cqw; width: 19.5cqw; }
+.cost i { width: 4.3cqw; height: 4.3cqw; }
+.move-name { flex: 1; font-weight: 600; font-size: 5.2cqw; line-height: 1; white-space: nowrap; }
+.dmg { font-weight: 700; font-size: 6.2cqw; line-height: 1; }
+
+.fact {
+  flex: none;
+  min-height: 9.6cqw;
+  padding: 1.2cqw 1.6cqw 0;
+  border-top: 0.3cqw solid rgba(0, 0, 0, 0.18);
+  font-size: 2.75cqw;
+  line-height: 1.3;
+  font-style: italic;
+}
+
+.foot { flex: none; display: flex; align-items: center; justify-content: space-between; height: 3.4cqw; padding: 0 1cqw; font-weight: 500; font-size: 2.4cqw; line-height: 1; }
+.foot .style, .foot .no { width: 30cqw; }
+.foot .no { text-align: right; }
+.stars { font-size: 3.5cqw; letter-spacing: 0.12em; }
+
+/* ---- colouring by type ---------------------------------------------------- */
+
+.t-leaf { --c1: #a9dc7c; --c2: #e8f6c6; --tc: #3f9b3a; }
+.t-rock { --c1: #d3ab72; --c2: #f3e4bd; --tc: #9a6a2c; }
+.t-sky { --c1: #86c8f4; --c2: #e2f3ff; --tc: #2f86d1; }
+.t-water { --c1: #62b4e8; --c2: #cdeeff; --tc: #1d6fc0; }
+.t-fire { --c1: #f08355; --c2: #ffd9b4; --tc: #d8421c; }
+.t-storm { --c1: #a488e6; --c2: #e9dcff; --tc: #6b3fc9; }
+
+/* ---- finishes ------------------------------------------------------------- */
+
+.fx { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; }
+
+.glare {
+  opacity: var(--glare);
+  background: radial-gradient(farthest-corner circle at var(--px) var(--py), rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.15) 32%, rgba(0, 0, 0, 0.3) 95%);
+  mix-blend-mode: overlay;
+}
+
+/* Common and uncommon: matte card stock. A little paper grain, almost no glare. */
+.r-common, .r-uncommon { --edge: #ebe6d8; --rim: #f6f3ea; }
+.r-common .tex, .r-uncommon .tex { opacity: 0.16; background: var(--noise); background-size: 34cqw; mix-blend-mode: multiply; }
+
+/* A foil edge: the card's border is a strip of metal whose shine slides along it as the light moves. */
+.r-rare .front, .r-ultra .front, .r-secret .front {
+  background-size: 320% 320%;
+  background-position: var(--px) var(--py);
+}
+
+/* ---- Rare: glossy silver edge, holo foil in the picture window, and a holographic
+   pattern printed into the base of the card. Each rare has its own foil pattern. ---- */
+.r-rare {
+  --edge: linear-gradient(115deg, #98a4b0, #f8fafc 14%, #a9b3bf 28%, #ffffff 42%, #8e9aa8 56%, #f5f7f9 70%, #a9b3bf 84%, #98a4b0);
+  --rim: #f3f5f8;
+  --glare: 0.34;
+}
+.r-rare .window::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--foil), linear-gradient(115deg, var(--rainbow));
+  background-size: var(--foil-size, 100% 100%), 400% 400%;
+  background-position: 0 0, var(--px) var(--py);
+  filter: brightness(0.6) contrast(1.5) saturate(1.3);
+  mix-blend-mode: color-dodge;
+  opacity: 0.85;
+  -webkit-mask-image: linear-gradient(115deg, transparent 12%, #000 40%, #000 60%, transparent 88%);
+  mask-image: linear-gradient(115deg, transparent 12%, #000 40%, #000 60%, transparent 88%);
+  -webkit-mask-size: 300% 300%;
+  mask-size: 300% 300%;
+  -webkit-mask-position: var(--px) var(--py);
+  mask-position: var(--px) var(--py);
+}
+/* The pattern in the base: rainbow ink that only shows where the pattern is cut, brightest in the band of light. */
+.r-rare .plate::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(115deg, var(--rainbow));
+  background-size: 400% 400%;
+  background-position: var(--px) var(--py);
+  opacity: 0.36;
+  -webkit-mask-image: var(--pattern), linear-gradient(115deg, rgba(0, 0, 0, 0.28) 10%, #000 42%, #000 58%, rgba(0, 0, 0, 0.28) 90%);
+  mask-image: var(--pattern), linear-gradient(115deg, rgba(0, 0, 0, 0.28) 10%, #000 42%, #000 58%, rgba(0, 0, 0, 0.28) 90%);
+  -webkit-mask-size: var(--pattern-size), 300% 300%;
+  mask-size: var(--pattern-size), 300% 300%;
+  -webkit-mask-position: 0 0, var(--px) var(--py);
+  mask-position: 0 0, var(--px) var(--py);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+/* Lattice: classic vertical-bar holo in the window, a diamond lattice in the base. */
+.fin-lattice {
+  --foil: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0) 0 2.4cqw, rgba(255, 255, 255, 0.3) 2.8cqw, rgba(255, 255, 255, 0) 3.2cqw);
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M-2 -2L26 26M26 -2L-2 26' stroke='black' stroke-width='2.2'/%3E%3C/svg%3E");
+  --pattern-size: 3.6cqw 3.6cqw;
+}
+/* Bubbles: a field of round holo dots in the window, the same dots, smaller, in the base. */
+.fin-bubbles {
+  --foil: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0 30%, rgba(255, 255, 255, 0) 34%);
+  --foil-size: 5cqw 5cqw;
+  --pattern: radial-gradient(circle, #000 0 26%, transparent 30%);
+  --pattern-size: 3.2cqw 3.2cqw;
+}
+
+/* ---- Full-art cards: the picture runs behind the whole template; the words sit on top of it.
+   Getting the full picture is the prize, so the foil is used sparingly and differently on each. ---- */
+.full-art .plate { background: none; color: #fff; text-shadow: 0 0.3cqw 0.9cqw rgba(0, 0, 0, 0.95), 0 0 0.5cqw rgba(0, 0, 0, 0.8); }
+.full-art .plate::before {
+  content: '';
+  position: absolute;
+  /* The picture is 0.9cqw wider than the plate all round; the shading has to cover all of it. */
+  inset: -0.9cqw;
+  z-index: -1;
+  border-radius: 2.8cqw;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), transparent 11%, transparent 50%, rgba(0, 0, 0, 0.62) 70%);
+}
+.full-art .window { box-shadow: none; }
+.full-art .strip { background: rgba(0, 0, 0, 0.45); }
+.full-art .fact { border-top-color: rgba(255, 255, 255, 0.4); }
+
+/* Ultra rare. */
+.r-ultra {
+  --edge: linear-gradient(115deg, #ffffff, #ffd3e6 12%, #cfeaff 26%, #ffffff 40%, #dccfff 54%, #cffbe4 68%, #fff3c4 82%, #ffffff);
+  --glare: 0.42;
+}
+/* Frame finish: no foil on the picture at all. The edge is rainbow-tinted silver, the picture is just glossy. */
+.fin-frame .front { box-shadow: 0 1cqw 3cqw rgba(0, 0, 0, 0.45), inset 0 0 0 0.45cqw rgba(255, 255, 255, 0.7); }
+
+/* Secret illustration rare. */
+.r-secret {
+  --edge: linear-gradient(115deg, #ff9db5, #ffe08a 14%, #9df0c0 28%, #8fd0ff 42%, #c9a6ff 56%, #ff9db5 70%, #ffe08a 84%, #9df0c0);
+  --glare: 0.45;
+}
+.r-secret .stars { color: #ffd84a; }
+/* Spot finish: foil only on chosen parts of the picture (--spots says where), plus the rainbow edge.
+   On the Spinosaurus that is its sail, the moon and the water. */
+.fin-spot {
+  --spots:
+    radial-gradient(ellipse 30% 15% at 36% 30%, #000 45%, transparent 100%),
+    radial-gradient(ellipse 17% 8% at 71% 8%, #000 40%, transparent 100%),
+    radial-gradient(ellipse 62% 11% at 50% 69%, #000 40%, transparent 100%);
+}
+.fin-spot .holo {
+  opacity: 0.8;
+  background: linear-gradient(115deg, var(--rainbow));
+  background-size: 350% 350%;
+  background-position: var(--px) var(--py);
+  filter: brightness(0.55) contrast(1.5) saturate(1.4);
+  mix-blend-mode: color-dodge;
+  -webkit-mask-image: var(--spots);
+  mask-image: var(--spots);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+}
+.fin-spot .glitter {
+  opacity: 0.95;
+  background: linear-gradient(-115deg, var(--rainbow));
+  background-size: 300% 300%;
+  background-position: calc(100% - var(--px)) calc(100% - var(--py));
+  mix-blend-mode: color-dodge;
+  -webkit-mask-image: var(--noise), var(--spots);
+  mask-image: var(--noise), var(--spots);
+  -webkit-mask-size: 30cqw, 100% 100%, 100% 100%, 100% 100%;
+  mask-size: 30cqw, 100% 100%, 100% 100%, 100% 100%;
+  -webkit-mask-composite: source-in, source-over, source-over;
+  mask-composite: intersect, add, add;
+}
+
+/* Gold rare: the whole card is embossed gold, with the words printed over it in ink. */
+.r-gold { --edge: linear-gradient(135deg, #fff1a8, #d9a520 30%, #fff6c8 50%, #b8860b 75%, #ffe27a); --glare: 0.5; --tc: #b8860b; }
+.r-gold .front .bleed { left: 0; top: 0; width: 100%; height: 100%; border-radius: 0; }
+.r-gold .plate {
+  /* The words are plain dark ink printed on top of the gold; the frame lines and badges are the embossed parts. */
+  color: #2a1800;
+  text-shadow: none;
+  box-shadow: inset 0 0 0 0.35cqw rgba(255, 244, 180, 0.85), inset 0 0 0 0.7cqw rgba(120, 78, 0, 0.5);
+}
+.r-gold .plate::before { background: none; }
+.r-gold .strip { background: none; box-shadow: inset 0 0.3cqw 0 rgba(255, 244, 180, 0.8), inset 0 -0.3cqw 0 rgba(120, 78, 0, 0.45); border-radius: 0; }
+.r-gold .fact { border-top-color: rgba(120, 78, 0, 0.5); }
+.r-gold .type, .r-gold .cost i { background: linear-gradient(160deg, #fff3b0, #c9971c 60%, #8a6200); }
+.r-gold .type svg, .r-gold .cost svg { fill: #5a3900; }
+.r-gold .stars { color: #2a1800; }
+.r-gold .tex {
+  opacity: 0.2;
+  background: repeating-conic-gradient(from 0deg at 50% 30%, rgba(255, 255, 255, 0.55) 0 0.5deg, transparent 0.5deg 2.5deg);
+  mix-blend-mode: overlay;
+}
+.r-gold .holo {
+  opacity: 0.7;
+  background: linear-gradient(115deg, transparent 28%, rgba(255, 226, 130, 0.7) 43%, rgba(255, 255, 255, 0.95) 50%, rgba(255, 200, 80, 0.7) 57%, transparent 72%);
+  background-size: 300% 300%;
+  background-position: var(--px) var(--py);
+  filter: brightness(0.75);
+  mix-blend-mode: color-dodge;
+}
+.r-gold .glitter {
+  opacity: 0.85;
+  background: #fff;
+  mix-blend-mode: overlay;
+  -webkit-mask-image: var(--noise), linear-gradient(115deg, transparent 20%, #000 50%, transparent 80%);
+  mask-image: var(--noise), linear-gradient(115deg, transparent 20%, #000 50%, transparent 80%);
+  -webkit-mask-size: 26cqw, 300% 300%;
+  mask-size: 26cqw, 300% 300%;
+  -webkit-mask-position: 0 0, var(--px) var(--py);
+  mask-position: 0 0, var(--px) var(--py);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
